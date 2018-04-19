@@ -54,10 +54,15 @@ function set_particles_num() {
 
 
 function set_bg_color(config = user_prefs, ccode = null) {
+  
   var canvas = document.getElementById('particles-js');
   if (ccode === null) {
     var option_ele = document.getElementById('bgcolor');
-    canvas.style.backgroundColor = option_ele.value
+    console.log(canvas);  
+    console.log(option_ele.value);
+    console.log(canvas.style.backgroundColor);
+    canvas.style.backgroundColor = "#"+option_ele.value;
+    console.log(canvas.style.backgroundColor);
   } else {
     canvas.style.backgroundColor = ccode;
   }
@@ -194,6 +199,10 @@ function get_image() {
   a.download = 'bgGeneratorImage.jpg';
   a.click();
 }
+
+function change_bginputvalue(color) { 
+  document.getElementById("bgcolor").value = color;
+ }
 
 function anim_particles() {
   if (document.getElementById('anim_cb').checked) {
