@@ -70,8 +70,8 @@ function set_bg_color(config = user_prefs, ccode = null) {
     canvas.style.backgroundColor = "rgb(" + ccode.r + "," + ccode.g + "," + ccode.b + ")";
     console.log(canvas.style.backgroundColor);
   } else {
-    ccode = hex_to_rgb("#" + ccode);
-    canvas.style.backgroundColor = "rgb(" + ccode.r + "," + ccode.g + "," + ccode.b + ")";
+    var ccoden = hex_to_rgb("#" + ccode);
+    canvas.style.backgroundColor = "rgb(" + ccoden.r + "," + ccoden.g + "," + ccoden.b + ")";
   }
   config.bg_color = canvas.style.backgroundColor;
   return config;
@@ -102,23 +102,24 @@ function set_preset() {
   var option_ele = document.getElementById('presetop');
   switch (option_ele.value) {
     case "0":
-      load_user_config(true);
       show_block(document.getElementById('effect'));
-      document.getElementById('effectsop').value = 0;
+      show_block(document.getElementById('pjsop'));
+      show_block(document.getElementById('animate'));
+      load_user_config(true);
       break;
     case "1":
       load_json_config('js/preset1.json');
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
       hide_block(document.getElementById('effect'));
-      set_bg_color({}, '#2d2541');
+      set_bg_color({}, '2d2541');
       break;
     case "2":
       load_json_config('js/preset2.json');
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
       hide_block(document.getElementById('effect'));
-      set_bg_color({}, '#FFCC33');
+      set_bg_color({}, 'FFCC33');
       break;
     case "3":
       load_json_config('js/preset3.json');
@@ -184,11 +185,16 @@ function show_error_onpage_by_qselector(selector, message) {
 }
 
 function show_block(targetElement) {
-  targetElement.style.display = 'block';
+  if (targetElement.style.display != 'block') {
+    targetElement.style.display = 'block';
+
+  }
 }
 
 function hide_block(targetElement) {
-  targetElement.style.display = 'none';
+  if (targetElement.style.display != 'none') {
+    targetElement.style.display = 'none';
+  }
 }
 
 function get_image() {
@@ -205,10 +211,6 @@ function get_image() {
   a.href = finalimage.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
   a.download = 'bgGeneratorImage.jpg';
   a.click();
-}
-
-function change_bginputvalue(color) {
-  document.getElementById("bgcolor").value = color;
 }
 
 function anim_particles() {
