@@ -55,7 +55,8 @@
                                         <label class="input-group-text">Choose </label>
                                     </div>
                                     <div class="col-sm-8 form-control col-sm-8 p-auto ml-2">
-                                        <input class="row w-100 m-0" type="color" id="bgcolor">
+                                        <input value="ffcc00" id="bgcolor" onchange="set_bg_color();" class="jscolor {width:'100%', padding:0, shadow:false,
+                                            borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}">
                                     </div>
                                 </div>
                                 <div class="row input-group mt-4 m-0">
@@ -117,8 +118,9 @@
                                         <div class="col-sm-4 input-group-prepend px-1">
                                             <label class="input-group-text">Color </label>
                                         </div>
-                                        <div class="col-sm-8 form-control col-sm-8 py-auto px-0 ml-2">
-                                            <input class="row w-100 m-0" type="color" id="pcolor" onchange="set_particles_color();">
+                                        <div class="col-sm-8 form-control col-sm-8 py-auto p-auto ml-2">
+                                            <input value="ffcc00" id="pcolor" onchange="set_particles_color();" class="jscolor {width:'100%', padding:0, shadow:false,
+                                            borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}">
                                         </div>
                                     </div>
                                     <div class="row input-group m-auto p-2 pt-4 bg-light">
@@ -268,6 +270,7 @@
     <!-- Main Container code ends here -->
 
     <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/jscolor.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/particles.js"></script>

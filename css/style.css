@@ -337,3 +337,7 @@ canvas {
 #dval {
   display: none;
 }
+
+#bgcolor, #pcolor {
+  max-width: 100%;
+}
