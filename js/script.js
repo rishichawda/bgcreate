@@ -2,7 +2,7 @@ const user_config_initial = 'js/particles.json';
 var current_user_config = {};
 user_prefs = {
   bg_color: "",
-  particles: false
+  particles_load: false
 };
 
 $(document).ready(function () {
@@ -16,13 +16,13 @@ function set_effect() {
       unload_particles();
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
-      user_prefs.particles = false;
+      user_prefs.particles_load = false;
       break;
     case "1":
       load_json_config(user_config_initial);
       show_block(document.getElementById('pjsop'));
       show_block(document.getElementById('animate'));
-      user_prefs.particles = true;
+      user_prefs.particles_load = true;
       break;
     default:
       break;
@@ -46,9 +46,13 @@ function set_density() {
   pJSDom[0].pJS.fn.particlesRefresh();
 }
 
-function set_particles_num() {
-  pJSDom[0].pJS.particles.number.value = document.getElementById('range_weight').value;
+function update_particles_num() {
   user_prefs.particles_num = document.getElementById('range_weight').value;
+  set_particles_num();
+}
+
+function set_particles_num() {
+  pJSDom[0].pJS.particles.number.value = user_prefs.particles_num;
   pJSDom[0].pJS.fn.particlesRefresh();
 }
 
@@ -61,26 +65,31 @@ function hex_to_rgb(hex) {
   } : null;
 }
 
-function set_bg_color(config = user_prefs, ccode = null) {
+function update_bg_color() {
   var canvas = document.getElementById('particles-js');
-  if (ccode === null) {
-    // console.log(canvas);  
-    var option_ele = document.getElementById('bgcolor');
-    ccode = hex_to_rgb("#" + option_ele.value);
-    canvas.style.backgroundColor = "rgb(" + ccode.r + "," + ccode.g + "," + ccode.b + ")";
-    console.log(canvas.style.backgroundColor);
-  } else {
-    var ccoden = hex_to_rgb("#" + ccode);
-    canvas.style.backgroundColor = "rgb(" + ccoden.r + "," + ccoden.g + "," + ccoden.b + ")";
-  }
-  config.bg_color = canvas.style.backgroundColor;
-  return config;
+  var option_ele = document.getElementById('bgcolor');
+  var ccode = hex_to_rgb("#" + option_ele.value);
+  user_prefs.bg_color = "rgb(" + ccode.r + "," + ccode.g + "," + ccode.b + ")";
+  set_bg_color(user_prefs.bg_color);
 }
 
-function set_particles_color() {
-  var option_ele = document.getElementById('pcolor');
-  pJSDom[0].pJS.particles.color.value = option_ele.value;
-  user_prefs.particles_color = option_ele.value;
+function set_bg_color(ccode) {
+  var canvas = document.getElementById('particles-js');
+  canvas.style.backgroundColor = ccode;
+}
+
+function reset_bg_color() {
+  set_bg_color('#FFFFFF');
+}
+
+function set_particles_color(fetch_from_prefs = null) {
+  if (fetch_from_prefs===null) {
+    pJSDom[0].pJS.particles.color.value = user_prefs.particles_color;
+  } else {
+    var option_ele = document.getElementById('pcolor');
+    pJSDom[0].pJS.particles.color.value = option_ele.value;
+    user_prefs.particles_color = option_ele.value;
+  }
   pJSDom[0].pJS.fn.particlesRefresh();
 }
 
@@ -91,7 +100,7 @@ function set_particles_shape() {
   pJSDom[0].pJS.fn.particlesRefresh();
 }
 
-function set_particles_size() {
+function set_particles_size(size = null) {
   pJSDom[0].pJS.particles.size.value = document.getElementById('range_size').value;
   user_prefs.particles_size = option_ele.value;
   // console.log(pJSDom[0].pJS.particles.size.value);
@@ -105,7 +114,7 @@ function set_preset() {
       show_block(document.getElementById('effect'));
       show_block(document.getElementById('pjsop'));
       show_block(document.getElementById('animate'));
-      load_user_config(true);
+      load_user_config();
       break;
     case "1":
       load_json_config('js/preset1.json');
@@ -132,14 +141,12 @@ function set_preset() {
   }
 }
 
-function reset_bg_color() {
-  user_prefs.bg_color = set_bg_color(user_prefs, '#FFFFFF');
-}
-
 function reset_canvas() {
   unload_particles();
   reset_bg_color();
-  current_user_config = {};
+  var option_ele = document.getElementById('effectsop');
+  option_ele.value =
+    current_user_config = {};
 }
 
 function unload_particles() {
@@ -147,22 +154,24 @@ function unload_particles() {
   while (canvas.firstChild) {
     canvas.removeChild(canvas.firstChild);
   }
-  load_user_config(false);
 }
 
 function load_json_config(config) {
   particlesJS.load('particles-js', config, function () {});
 }
 
-function load_user_config(particles_load) {
+function load_user_config() {
   var canvas = document.getElementById('particles-js');
   canvas.style.backgroundColor = user_prefs.bg_color;
-  if (particles_load) {
-    pJSDom[0].pJS.particles.number.value = user_prefs.particles_num;
-    pJSDom[0].pJS.particles.size.anim = user_prefs.particles_size_anim;
-    pJSDom[0].pJS.particles.shape.type = user_prefs.particles_shape;
-    pJSDom[0].pJS.fn.particlesRefresh();
-    console.log(user_prefs);
+  if (user_prefs.particles_load) {
+    load_json_config(user_config_initial);
+    set_particles_num();
+    if (user_prefs.particles_size_anim != undefined) {
+      pJSDom[0].pJS.particles.size.anim = user_prefs.particles_size_anim;
+      pJSDom[0].pJS.fn.particlesRefresh();
+    }
+    set_particles_shape();
+    set_particles_color(null);
   }
 }
 
