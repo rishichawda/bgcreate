@@ -2,7 +2,8 @@ const user_config_initial = 'js/particles.json';
 var current_user_config = {};
 user_prefs = {
   bg_color: "",
-  particles_load: false
+  particles_load: false,
+  particles_color: '',
 };
 
 $(document).ready(function () {
@@ -82,15 +83,17 @@ function reset_bg_color() {
   set_bg_color('#FFFFFF');
 }
 
-function set_particles_color(fetch_from_prefs = null) {
-  if (fetch_from_prefs===null) {
-    pJSDom[0].pJS.particles.color.value = user_prefs.particles_color;
-  } else {
+function set_particles_color(fetch_from_prefs) {
+  if (fetch_from_prefs != null) {
     var option_ele = document.getElementById('pcolor');
     pJSDom[0].pJS.particles.color.value = option_ele.value;
-    user_prefs.particles_color = option_ele.value;
+    user_prefs.particles_color.value = option_ele.value;
+    // user_prefs.particles_color.rgb = hex_to_rgb('#'+option_ele.value);
+    pJSDom[0].pJS.fn.particlesRefresh();
+  } else {
+    pJSDom[0].pJS.particles.color.value = user_prefs.particles_color;
+    pJSDom[0].pJS.fn.particlesRefresh();
   }
-  pJSDom[0].pJS.fn.particlesRefresh();
 }
 
 function set_particles_shape() {
@@ -123,14 +126,14 @@ function set_preset() {
       hide_block(document.getElementById('effect'));
       set_bg_color('#2d2541');
       break;
-    case "2":
+      case "2":
       load_json_config('js/preset2.json');
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
       hide_block(document.getElementById('effect'));
       set_bg_color('#FFCC33');
       break;
-    case "3":
+      case "3":
       load_json_config('js/preset3.json');
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
@@ -164,14 +167,33 @@ function load_user_config() {
   var canvas = document.getElementById('particles-js');
   canvas.style.backgroundColor = user_prefs.bg_color;
   if (user_prefs.particles_load) {
-    load_json_config(user_config_initial);
-    set_particles_num();
-    if (user_prefs.particles_size_anim != undefined) {
-      pJSDom[0].pJS.particles.size.anim = user_prefs.particles_size_anim;
-      pJSDom[0].pJS.fn.particlesRefresh();
+    console.log(user_prefs.particles_color);
+    if(user_prefs.particles_color.value!=null){
+      pJSDom[pJSDom.length-1].pJS.particles.color.value = user_prefs.particles_color.value;
     }
-    set_particles_shape();
-    set_particles_color(null);
+    // if(user_prefs.particles_color.rgb)
+    // pJSDom[0].pJS.particles.color.rgb = user_prefs.particles_color.rgb;
+    console.log(pJSDom[pJSDom.length-1]);
+    pJSDom[pJSDom.length-1].pJS.fn.particlesRefresh();
+    // $.getJSON("js/particles.json", function (json) {
+
+    //   current_user_config = json;
+    //   current_user_config.particles.color = user_prefs.particles_color;
+
+    // });
+    // particlesJS.load('particles-js', user_config_initial, function () {
+    //   console.log('loaded');
+    //   set_particles_color(null);
+    // });
+    // set_particles_num();
+    // if (user_prefs.particles_size_anim != undefined) {
+    //   pJSDom[0].pJS.particles.size.anim = user_prefs.particles_size_anim;
+    //   pJSDom[0].pJS.fn.particlesRefresh();
+    // }
+    // set_particles_shape();
+  }
+  else{
+    unload_particles();
   }
 }
 
