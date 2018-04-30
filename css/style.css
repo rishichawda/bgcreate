@@ -335,7 +335,7 @@ canvas {
   cursor: pointer;
 }
 
-#dval {
+#dval,#error_message {
   display: none;
 }
 
