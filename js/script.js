@@ -230,18 +230,37 @@ function hide_block(targetElement) {
 
 function get_image() {
   var canvas = document.getElementsByTagName('canvas')[0];
-  console.log(canvas.width, canvas.height);
-  finalimage = document.createElement("canvas");
-  finalimage_canvascontext = finalimage.getContext('2d');
-  finalimage.width = canvas.width;
-  finalimage.height = canvas.height;
-  finalimage_canvascontext.fillStyle = user_prefs.bg_color;
-  finalimage_canvascontext.fillRect(0, 0, canvas.width, canvas.height);
-  finalimage_canvascontext.drawImage(canvas, 0, 0);
-  var a = document.createElement('a');
-  a.href = finalimage.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-  a.download = 'bgGeneratorImage.jpg';
-  a.click();
+  if(user_prefs.bg_color==="" && user_prefs.particles_load===false){
+    document.getElementsByClassName('alert')[0].classList.remove('invisible');
+  }
+  else if(user_prefs.bg_color!=="" && user_prefs.particles_load===false){
+    $('.alert').alert('close');
+    finalimage = document.createElement("canvas");
+    finalimage_canvascontext = finalimage.getContext('2d');
+    finalimage.width = 2000;
+    finalimage.height = 2000;
+    finalimage_canvascontext.fillStyle = user_prefs.bg_color;
+    finalimage_canvascontext.fillRect(0, 0, 2000, 2000);
+    var a = document.createElement('a');
+    a.href = finalimage.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+    a.download = 'bgGeneratorImage.jpg';
+    a.click();
+  }
+  else{
+    $('.alert').alert('close');
+    // console.log(canvas.width, canvas.height);
+    finalimage = document.createElement("canvas");
+    finalimage_canvascontext = finalimage.getContext('2d');
+    finalimage.width = canvas.width;
+    finalimage.height = canvas.height;
+    finalimage_canvascontext.fillStyle = user_prefs.bg_color;
+    finalimage_canvascontext.fillRect(0, 0, canvas.width, canvas.height);
+    finalimage_canvascontext.drawImage(canvas, 0, 0);
+    var a = document.createElement('a');
+    a.href = finalimage.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+    a.download = 'bgGeneratorImage.jpg';
+    a.click();
+  }
 }
 
 function anim_particles() {
@@ -306,3 +325,4 @@ function randomise_opacity() {
   user_prefs.particles_opacity_random = pJSDom[0].pJS.particles.opacity.random;
   pJSDom[0].pJS.fn.particlesRefresh();
 }
+

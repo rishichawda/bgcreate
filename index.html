@@ -23,8 +23,12 @@
             <i class="material-icons" id="sidenavbutton">view_headline</i>
         </div>
         <a class="navbar-brand" href="#">bgCreator</a>
-        <i class="material-icons" onclick="get_image();">camera_enhance</i>
+        <div class="my-2">
+            <i class="material-icons" onclick="pause_image();">&#xE85B;</i>
+            <i class="material-icons" onclick="get_image();">&#xE8FC;</i>
+        </div>
     </nav>
+    <div class="alert alert-danger invisible" role="alert"><strong>Oops!</strong> Couldn't find anything to draw. Add a background color maybe?</div>
     <!-- Navbar code ends here -->
     <!-- Main Container code starts here -->
     <div class="container-fluid w-100 p-0">
@@ -213,46 +217,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="card">
-                        <div class="card-header p-0" id="headingFive">
-                            <h5 class="mb-0">
-                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                    Presets
-                                </div>
-                            </h5>
-                        </div>
-                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                            <div class="card-body mt-2 mb-2 p-2">
-                                <div class="row input-group mb-3 m-0">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text">Select Preset</label>
-                                    </div>
-                                    <select class="custom-select" id="presetop" onchange="set_preset();"> -->
-                                        <!-- <option value="-1">Choose an effect...</option> -->
-                                        <!-- <option value="0" selected>None</option>
-                                        <option value="1">Preset 1</option>
-                                        <option value="2">Preset 2</option>
-                                        <option value="3">Preset 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
-                <!-- <div class="card">
-                        <div class="card-header p-0" id="headingThree">
-                            <h5 class="mb-0">
-                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Collapsible Group Item #3
-                                </div>
-                            </h5>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit,
-                            </div>
-                        </div>
-                    </div> -->
             </div>
             <!-- Side Navigation Panel code ends here -->
             <div class="col mr-auto bg-light" id="usercanvas">
