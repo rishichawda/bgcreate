@@ -24,8 +24,8 @@
         </div>
         <a class="navbar-brand" href="#">bgCreator</a>
         <div class="my-2">
-            <i class="material-icons" onclick="pause_image();">&#xE85B;</i>
-            <i class="material-icons" onclick="get_image();">&#xE8FC;</i>
+            <i class="material-icons" onclick="pause_image();" data-toggle="tooltip" data-placement="bottom" title="Pause particles movement">&#xE85B;</i>
+            <i class="material-icons" onclick="get_image();" data-toggle="tooltip" data-placement="bottom" title="Download image">&#xE8FC;</i>
         </div>
     </nav>
     <div class="alert alert-danger" id="error_message" role="alert"><strong>Oops!</strong> Couldn't find anything to draw. Add a background color maybe?</div>
@@ -54,7 +54,7 @@
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body mt-2 mb-2 p-2">
-                                <div class="row input-group m-0">
+                                <div class="row input-group m-0" data-toggle="tooltip" data-placement="right" title="Choose a background color">
                                     <div class="col-sm-4 input-group-prepend px-1">
                                         <label class="input-group-text">Choose </label>
                                     </div>
