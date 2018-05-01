@@ -332,3 +332,13 @@ function randomise_opacity() {
   user_prefs.particles_opacity_random = pJSDom[0].pJS.particles.opacity.random;
   pJSDom[0].pJS.fn.particlesRefresh();
 }
+
+function pause_image() { 
+  if(pJSDom[0].pJS.particles.move.enable){
+    pJSDom[0].pJS.particles.move.enable = false;
+  }
+  else{
+    pJSDom[0].pJS.particles.move.enable = true;
+    pJSDom[0].pJS.fn.particlesRefresh();
+  }
+ }
