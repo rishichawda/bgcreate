@@ -6,7 +6,9 @@ user_prefs = {
   particles_color: '',
 };
 
+
 $(document).ready(function () {
+  $('[data-toggle="tooltip"]').tooltip();
   document.getElementById("sidenav").style.display = "none";
 });
 

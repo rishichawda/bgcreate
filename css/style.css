@@ -29,7 +29,7 @@ body>div>div {
 }
 
 nav {
-  z-index: 3;
+  z-index: 9999;
   box-shadow: 0px 1.1px 16px 2px rgba(0, 0, 0, 0.34);
 }
 
@@ -39,8 +39,20 @@ nav {
 
 #sidenav {
   display: none;
-  z-index: 2;
-  box-shadow: 1.1px 0px 16px 1px rgba(0, 0, 0, 0.34);
+  width: 29vw;
+  z-index: 999;
+  position: fixed;
+  background-color: transparent;
+  opacity: 0.7;
+  /* box-shadow: 1.1px 0px 16px 1px rgba(0, 0, 0, 0.34); */
+}
+
+#sidenav > div {
+  opacity: 1;
+}
+
+#accordion > div {
+  margin-bottom: 0.2em;
 }
 
 body>div>div>div.col {
@@ -233,11 +245,14 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.tooltip, .tooltip-inner{
+  max-height: fit-content;
+}
 
 canvas {
   display: block;
-  /* height: 100vh;
-  width: 100vw; */
+  /* height: 100vh; */
+  /* width: 100vw; */
   vertical-align: bottom;
 }
 
