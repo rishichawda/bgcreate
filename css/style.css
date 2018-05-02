@@ -247,6 +247,7 @@ html {
 
 .tooltip, .tooltip-inner{
   max-height: fit-content;
+  z-index: 9999;
 }
 
 canvas {
