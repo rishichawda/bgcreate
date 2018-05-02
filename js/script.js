@@ -164,6 +164,7 @@ function unload_particles() {
   while (canvas.firstChild) {
     canvas.removeChild(canvas.firstChild);
   }
+  pJSDom = [];
 }
 
 function load_json_config(config) {
