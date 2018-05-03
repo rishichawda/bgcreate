@@ -1,7 +1,7 @@
 const user_config_initial = 'js/particles.json';
 var current_user_config = {};
 user_prefs = {
-  bg_color: "",
+  bg_color: "#FFFFFF",
   particles_load: false,
   particles_color: '',
 };
@@ -79,6 +79,7 @@ function update_bg_color() {
 function set_bg_color(ccode) {
   var canvas = document.getElementById('particles-js');
   canvas.style.backgroundColor = ccode;
+  user_prefs.bg_color = ccode;
 }
 
 function reset_bg_color() {
@@ -151,9 +152,10 @@ function reset_canvas() {
   reset_bg_color();
   var option_ele = document.getElementById('effectsop');
   option_ele.value = 0;
+  var anim_size = document.getElementById('aopacityop');
   current_user_config = {};
   user_prefs = {
-    bg_color: "",
+    bg_color: "#FFFFFF",
     particles_load: false,
     particles_color: '',
   };

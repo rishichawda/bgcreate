@@ -47,7 +47,7 @@ nav {
   /* box-shadow: 1.1px 0px 16px 1px rgba(0, 0, 0, 0.34); */
 }
 
-#sidenav > div {
+#sidenav > div.row {
   opacity: 1;
 }
 
