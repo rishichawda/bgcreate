@@ -347,3 +347,13 @@ function pause_image() {
     pJSDom[0].pJS.fn.particlesRefresh();
   }
  }
+
+function updatepAnimSpeed() { 
+  user_prefs.particles_anim_speed = document.getElementById('animspeedrange').value;
+  set_particles_num();
+ }
+
+ function setpAnimSpeed() { 
+  pJSDom[0].pJS.particles.size.anim.speed = user_prefs.particles_anim_speed;
+  pJSDom[0].pJS.fn.particlesRefresh();
+  }
