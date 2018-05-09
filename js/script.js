@@ -69,7 +69,6 @@ function hex_to_rgb(hex) {
 }
 
 function update_bg_color() {
-  var canvas = document.getElementById('particles-js');
   var option_ele = document.getElementById('bgcolor');
   var ccode = hex_to_rgb("#" + option_ele.value);
   user_prefs.bg_color = "rgb(" + ccode.r + "," + ccode.g + "," + ccode.b + ")";
@@ -77,9 +76,9 @@ function update_bg_color() {
 }
 
 function set_bg_color(ccode) {
-  var canvas = document.getElementById('particles-js');
-  canvas.style.backgroundColor = ccode;
-  user_prefs.bg_color = ccode;
+  var canvas = document.getElementsByTagName('canvas')[0];
+  canvas.getContext('2d').fillStyle = ccode;
+  canvas.getContext('2d').fillRect(0, 0, 2000, 2000);
 }
 
 function reset_bg_color() {
@@ -91,7 +90,6 @@ function set_particles_color(fetch_from_prefs) {
     var option_ele = document.getElementById('pcolor');
     pJSDom[0].pJS.particles.color.value = option_ele.value;
     user_prefs.particles_color.value = option_ele.value;
-    // user_prefs.particles_color.rgb = hex_to_rgb('#'+option_ele.value);
     pJSDom[0].pJS.fn.particlesRefresh();
   } else {
     pJSDom[0].pJS.particles.color.value = user_prefs.particles_color;
@@ -170,7 +168,9 @@ function unload_particles() {
 }
 
 function load_json_config(config) {
-  particlesJS.load('particles-js', config, function () {});
+  particlesJS.load('particles-js', config, function () {
+    load_user_config();
+  });
 }
 
 function load_user_config() {
