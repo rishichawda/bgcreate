@@ -151,6 +151,9 @@ function reset_canvas() {
   var option_ele = document.getElementById('effectsop');
   option_ele.value = 0;
   var anim_size = document.getElementById('aopacityop');
+  if(anim_size){
+    anim_size.value = 0;
+  }
   current_user_config = {};
   user_prefs = {
     bg_color: "#FFFFFF",
@@ -161,9 +164,13 @@ function reset_canvas() {
 
 function unload_particles() {
   var canvas = document.getElementById('particles-js');
-  while (canvas.firstChild) {
-    canvas.removeChild(canvas.firstChild);
-  }
+  $('.particles-js-canvas-el').remove();
+  var newcanvas = document.createElement('canvas');
+  newcanvas.classList += 'particles-js-canvas-el h-100 w-100';
+  canvas.appendChild(newcanvas);
+  set_bg_color(user_prefs.bg_color);
+  hide_block(document.getElementById('animate'));
+  hide_block(document.getElementById('pjsop'))
   pJSDom = [];
 }
 
@@ -174,8 +181,7 @@ function load_json_config(config) {
 }
 
 function load_user_config() {
-  var canvas = document.getElementById('particles-js');
-  canvas.style.backgroundColor = user_prefs.bg_color;
+  set_bg_color(user_prefs.bg_color);
   if (user_prefs.particles_load) {
     console.log(user_prefs.particles_color);
     if (user_prefs.particles_color.value != null) {
