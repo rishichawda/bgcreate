@@ -78,7 +78,7 @@ function update_bg_color() {
 function set_bg_color(ccode) {
   var canvas = document.getElementsByTagName('canvas')[0];
   canvas.getContext('2d').fillStyle = ccode;
-  canvas.getContext('2d').fillRect(0, 0, 2000, 2000);
+  canvas.getContext('2d').fillRect(0, 0, window.innerHeight, window.innerWidth);
 }
 
 function reset_bg_color() {
@@ -185,12 +185,12 @@ function load_user_config() {
   if (user_prefs.particles_load) {
     console.log(user_prefs.particles_color);
     if (user_prefs.particles_color.value != null) {
-      pJSDom[pJSDom.length - 1].pJS.particles.color.value = user_prefs.particles_color.value;
+      pJSDom[0].pJS.particles.color.value = user_prefs.particles_color.value;
     }
     // if(user_prefs.particles_color.rgb)
     // pJSDom[0].pJS.particles.color.rgb = user_prefs.particles_color.rgb;
-    console.log(pJSDom[pJSDom.length - 1]);
-    pJSDom[pJSDom.length - 1].pJS.fn.particlesRefresh();
+    console.log(pJSDom[0]);
+    pJSDom[0].pJS.fn.particlesRefresh();
     // $.getJSON("js/particles.json", function (json) {
 
     //   current_user_config = json;
