@@ -71,14 +71,13 @@ function hex_to_rgb(hex) {
 function update_bg_color() {
   var option_ele = document.getElementById('bgcolor');
   var ccode = hex_to_rgb("#" + option_ele.value);
-  user_prefs.bg_color = "rgb(" + ccode.r + "," + ccode.g + "," + ccode.b + ")";
+  user_prefs.bg_color = "rgb(" + ccode.r + "," + ccode.g + "," + ccode.b + ",1.0)";
   set_bg_color(user_prefs.bg_color);
 }
 
 function set_bg_color(ccode) {
   var canvas = document.getElementsByTagName('canvas')[0];
-  canvas.getContext('2d').fillStyle = ccode;
-  canvas.getContext('2d').fillRect(0, 0, window.innerHeight, window.innerWidth);
+  canvas.style.backgroundColor = ccode;
 }
 
 function reset_bg_color() {
