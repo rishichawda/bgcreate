@@ -4,7 +4,8 @@ user_prefs = {
   bg_color: "#FFFFFF",
   particles_load: false,
   particles_color: '',
-  particles_num: 110
+  particles_num: 110,
+  particles_density: 800
 };
 
 
@@ -33,8 +34,13 @@ function set_effect() {
   }
 }
 
+function update_density_val() {
+  user_prefs.particles_density = document.getElementById('densityvalue').value
+  set_density_val();
+}
+
 function set_density_val() {
-  pJSDom[0].pJS.particles.number.density.value_area = document.getElementById('densityvalue').value;
+  pJSDom[0].pJS.particles.number.density.value_area = user_prefs.particles_density;
   pJSDom[0].pJS.fn.particlesRefresh();
 }
 
@@ -180,7 +186,7 @@ function load_user_config() {
   if (user_prefs.particles_load) {
     set_particles_color();
     set_particles_num();
-    // set_density();
+    set_density();
     set_particles_shape();
     // set_particles_size();
     // }
