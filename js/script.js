@@ -125,21 +125,20 @@ function set_preset() {
       load_user_config();
       break;
     case "1":
-      load_json_config('js/preset1.json');
+      load_json_config('js/preset1.json',false,'#2d2541');
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
       hide_block(document.getElementById('effect'));
-      set_bg_color('#2d2541');
       break;
     case "2":
-      load_json_config('js/preset2.json');
+      load_json_config('js/preset2.json',false,'#FFCC33');
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
       hide_block(document.getElementById('effect'));
-      set_bg_color('#FFCC33');
+      
       break;
     case "3":
-      load_json_config('js/preset3.json');
+      load_json_config('js/preset3.json',false,'#000000');
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
       hide_block(document.getElementById('effect'));
@@ -181,9 +180,13 @@ function unload_particles() {
   pJSDom = [];
 }
 
-function load_json_config(config) {
+function load_json_config(config,load_user=true,ccode) {
   particlesJS.load('particles-js', config, function () {
-    load_user_config();
+    if(load_user){
+      load_user_config();
+    } else {
+      set_bg_color(ccode);
+    }
   });
 }
 
@@ -197,27 +200,6 @@ function load_user_config() {
     anim_particles();
     anim_particles_opacity();
     randomise_opacity();
-    // set_particles_size();
-    // }
-    // if(user_prefs.particles_color.rgb)
-    // pJSDom[0].pJS.particles.color.rgb = user_prefs.particles_color.rgb;
-    // console.log(pJSDom[0]);
-    // $.getJSON("js/particles.json", function (json) {
-
-    //   current_user_config = json;
-    //   current_user_config.particles.color = user_prefs.particles_color;
-
-    // });
-    // particlesJS.load('particles-js', user_config_initial, function () {
-    //   console.log('loaded');
-    //   set_particles_color(null);
-    // });
-    // set_particles_num();
-    // if (user_prefs.particles_size_anim != undefined) {
-    //   pJSDom[0].pJS.particles.size.anim = user_prefs.particles_size_anim;
-    //   pJSDom[0].pJS.fn.particlesRefresh();
-    // }
-    // set_particles_shape();
   } else {
     unload_particles();
   }

@@ -215,6 +215,31 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-header p-0" id="headingFive">
+                            <h5 class="mb-0">
+                                <div class="btn" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                    Particle Presets
+                                </div>
+                            </h5>
+                        </div>
+
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                            <div class="card-body mt-2 mb-2 p-2">
+                                <div class="row input-group mb-3 m-0">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text">Options</label>
+                                    </div>
+                                    <select class="custom-select" id="presetop" onchange="set_preset();">
+                                        <option value="0" selected>None</option>
+                                        <option value="1">Preset 1</option>
+                                        <option value="2">Preset 2</option>
+                                        <option value="3">Preset 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Side Navigation Panel code ends here -->
