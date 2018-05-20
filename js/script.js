@@ -194,6 +194,9 @@ function load_user_config() {
     set_particles_num();
     set_density();
     set_particles_shape();
+    anim_particles();
+    anim_particles_opacity();
+    randomise_opacity();
     // set_particles_size();
     // }
     // if(user_prefs.particles_color.rgb)
