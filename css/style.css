@@ -40,7 +40,7 @@ nav {
 
 #sidenav {
   display: none;
-  width: 29vw;
+  width: 29vh;
   z-index: 999;
   position: fixed;
   background-color: transparent;
