@@ -24,14 +24,14 @@
         </div>
         <a class="navbar-brand" href="#">bgCreator</a>
         <div class="my-2">
-            <i class="material-icons" onclick="pause_image();" data-toggle="tooltip" data-placement="left" title="Pause particles movement">&#xE85B;</i>
+            <i class="material-icons" onclick="pause_image();" data-toggle="tooltip" data-placement="left" title="Pause / Resume particles movement">&#xE85B;</i>
             <i class="material-icons" onclick="get_image();" data-toggle="tooltip" data-placement="left" title="Download image">&#xE8FC;</i>
         </div>
     </nav>
     <div class="alert alert-danger" id="error_message" role="alert"><strong>Oops!</strong> Couldn't find anything to draw. Add a background color maybe?</div>
     <!-- Navbar code ends here -->
     <!-- Main Container code starts here -->
-    <div class="container-fluid w-100 p-0">
+    <div class="container-fluid w-100 h-100 p-0">
         <!-- Side Navigation Panel code starts here -->
         <div class="p-1" id="sidenav">
                 <div class="row p-2">
@@ -139,14 +139,14 @@
                                             <!-- <option value="image">Image</option> -->
                                         </select>
                                     </div>
-                                    <!-- <div class="row input-group m-auto p-2 pt-4 bg-light"> -->
-                                        <!-- <div class="col-sm-4 w-100 m-auto p-1">
+                                    <!-- <div class="row input-group m-auto p-2 pt-4 bg-light">
+                                        <div class="col-sm-4 w-100 m-auto p-1">
                                             <label for="points">Size</label>
                                         </div>
                                         <div class="col-sm-8 w-100 m-auto">
-                                            <input class="w-100" type="range" name="size" id="range_size" value min="0" max="500" data-show-value="true" oninput="setpSize();">
-                                        </div> -->
-                                    <!-- </div> -->
+                                            <input class="w-100" type="range" name="size" id="range_size" value min="0" max="500" data-show-value="true" oninput="set_particles_size();">
+                                        </div>
+                                    </div> -->
                                     <div class="row input-group m-auto p-2 pt-4 bg-light">
                                         <div class="input-group-prepend">
                                             <label class="input-group-text">Density Enable</label>
@@ -219,12 +219,12 @@
             </div>
             <!-- Side Navigation Panel code ends here -->
         <!-- Tool container code starts here -->
-        <div class="row">
+        <div class="row h-100">
             <div class="col mr-auto bg-light" id="usercanvas">
                 <div class="row text-center h-100">
                     <div class="col mr-auto p-0">
                         <div id="particles-js">
-                            <canvas class="particles-js-canvas-el" style="min-width: 2000px;min-height: 2000px;"></canvas>
+                            <canvas class="particles-js-canvas-el" style="height: 100%;width: 100%;"></canvas>
                         </div>
                     </div>
                 </div>

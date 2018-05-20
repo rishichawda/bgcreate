@@ -5,12 +5,14 @@ user_prefs = {
   particles_load: false,
   particles_color: '',
   particles_num: 110,
-  particles_density: 800
+  particles_density: 800,
+  particles_size: 20
 };
 
 
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
+  $('body > nav > div.my-2 > i:nth-child(1)').hide();
   document.getElementById("sidenav").style.display = "none";
 });
 
@@ -21,12 +23,13 @@ function set_effect() {
       unload_particles();
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
-      // user_prefs.particles_load = false;
+      user_prefs.particles_load = false;
       break;
-    case "1":
+      case "1":
       load_json_config(user_config_initial);
       show_block(document.getElementById('pjsop'));
       show_block(document.getElementById('animate'));
+      $('body > nav > div.my-2 > i:nth-child(1)').show();
       user_prefs.particles_load = true;
       break;
     default:
@@ -105,11 +108,11 @@ function set_particles_shape() {
   pJSDom[0].pJS.fn.particlesRefresh();
 }
 
-function set_particles_size(size = null) {
-  pJSDom[0].pJS.particles.size.value = document.getElementById('range_size').value;
-  user_prefs.particles_size = option_ele.value;
+function set_particles_size() {
+  user_prefs.particles_size = document.getElementById('range_size').value;
+  pJSDom[0].pJS.particles.size.value = user_prefs.particles_size;
   // console.log(pJSDom[0].pJS.particles.size.value);
-  pJSDom[0].pJS.fn.particlesRefresh();
+  pJSDom[0].pJS.fn.particlesUpdate();
 }
 
 function set_preset() {
@@ -160,6 +163,9 @@ function reset_canvas() {
     bg_color: "#FFFFFF",
     particles_load: false,
     particles_color: '',
+    particles_num: 110,
+    particles_density: 800,
+    particles_size: 20
   };
 }
 
@@ -247,13 +253,13 @@ function hide_block(targetElement) {
 
 function get_image() {
   var canvas = document.getElementsByTagName('canvas')[0];
-  if (user_prefs.bg_color === "" && user_prefs.particles_load === false) {
+  if (user_prefs.bg_color === "#FFFFFF" && user_prefs.particles_load === false) {
     show_block(document.getElementById('error_message'));
     setTimeout(() => {
       // $('.alert').alert('close');
       hide_block(document.getElementById('error_message'));
-    }, 2000)
-  } else if (user_prefs.bg_color !== "" && user_prefs.particles_load === false) {
+    }, 2900)
+  } else if (user_prefs.bg_color !== "#FFFFFF" && user_prefs.particles_load === false) {
     // $('.alert').alert('close');
     finalimage = document.createElement("canvas");
     finalimage_canvascontext = finalimage.getContext('2d');
