@@ -357,6 +357,6 @@ canvas {
   display: none;
 }
 
-#bgcolor, #pcolor {
+#bgcolor, #pcolor, #pencil-color {
   max-width: 100%;
 }

@@ -92,20 +92,45 @@
                                         <!-- <option value="-1">Choose an effect...</option> -->
                                         <option value="0" selected>None</option>
                                         <option value="1">Particles</option>
+                                        <option value="2">Paint</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card" id="pjsop">
+                    <div class="card" id="paint_section">
                         <div class="card-header p-0" id="headingThree">
                             <h5 class="mb-0">
                                 <div class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Particle properties
+                                    Paint
                                 </div>
                             </h5>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body mt-2 mb-2 p-2">
+                                <div class="container p-2 my-2">
+                                    <div class="row input-group m-0">
+                                        <div class="col-sm-4 input-group-prepend px-1">
+                                            <label class="input-group-text">Choose </label>
+                                        </div>
+                                        <div class="col-sm-8 form-control col-sm-8 p-auto ml-2">
+                                                <input class="jscolor {width:101, padding:0, shadow:false,
+                                                    borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}" onchange="select_pencil_color()" value id="pencil-color">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" id="pjsop">
+                        <div class="card-header p-0" id="headingFour">
+                            <h5 class="mb-0">
+                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Particle properties
+                                </div>
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                             <div class="card-body mt-2 mb-2 p-2">
                                 <div class="container p-2 my-2">
                                     <div class="row input-group m-auto p-2 pt-4 bg-light">
@@ -169,14 +194,14 @@
                         </div>
                     </div>
                     <div class="card invsible" id="animate">
-                        <div class="card-header p-0" id="headingFour">
+                        <div class="card-header p-0" id="headingFive">
                             <h5 class="mb-0">
-                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                     Add animation
                                 </div>
                             </h5>
                         </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
                             <div class="card-body mt-2 mb-2 p-2">
                                 <div class="container p-2 my-2">
                                     <div class="row input-group m-auto p-2 bg-light">
@@ -215,16 +240,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header p-0" id="headingFive">
+                    <div class="card" id="particle_presets">
+                        <div class="card-header p-0" id="collapseSix">
                             <h5 class="mb-0">
-                                <div class="btn" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                <div class="btn" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
                                     Particle Presets
                                 </div>
                             </h5>
                         </div>
 
-                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                        <div id="collapseSix" class="collapse" aria-labelledby="collapseSix" data-parent="#accordion">
                             <div class="card-body mt-2 mb-2 p-2">
                                 <div class="row input-group mb-3 m-0">
                                     <div class="input-group-prepend">
@@ -249,7 +274,7 @@
                 <div class="row text-center h-100">
                     <div class="col mr-auto p-0">
                         <div id="particles-js">
-                            <canvas class="particles-js-canvas-el" style="height: 100%;width: 100%;"></canvas>
+                            <!-- <canvas class="particles-js-canvas-el" style="height: 100%;width: 100%;"></canvas> -->
                         </div>
                     </div>
                 </div>
@@ -260,6 +285,7 @@
     <!-- Main Container code ends here -->
 
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/paint.js"></script>
     <script src="js/script.js"></script>
     <script src="js/jscolor.min.js"></script>
     <script src="js/popper.min.js"></script>
