@@ -49,11 +49,15 @@ function update_prefs(bg_color = null, particles_load = null, particles_color = 
   }
 }
 
-function canvas_init() {
+function canvas_init(type=null) {
   if ($('canvas')[0] !== undefined) {
     $('canvas').remove();
   }
-  $('#particles-js').append($('<canvas class="particles-js-canvas-el" style="height: 100%;width: 100%;"></canvas>'));
+  if(type==='paint') {
+    $('#particles-js').append($('<canvas id="paint-canvas" style="height: 100%;width: 100%;"></canvas>'));
+  } else {
+    $('#particles-js').append($('<canvas class="particles-js-canvas-el" style="height: 100%;width: 100%;"></canvas>'));
+  }
   return $('canvas')[0];
 }
 
@@ -109,7 +113,9 @@ function set_effect() {
       break;
     case "2":
       if (confirm('Are you sure you want to proceed? Selecting this option will remove your current progress and reset the canvas.')) {
-        canvas_init();
+        canvas_init('paint');
+        var event = $.Event('build');
+        $('#paint-canvas').trigger(event);
         $('#paint_section').show();
         hide_block(document.getElementById('pjsop'));
         hide_block(document.getElementById('animate'));
