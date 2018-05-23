@@ -28,143 +28,149 @@
             <i class="material-icons" onclick="get_image();" data-toggle="tooltip" data-placement="left" title="Download image">&#xE8FC;</i>
         </div>
     </nav>
-    <div class="alert alert-danger" id="error_message" role="alert"><strong>Oops!</strong> Couldn't find anything to draw. Add a background color maybe?</div>
+    <div class="alert alert-danger" id="error_message" role="alert">
+        <strong>Oops!</strong> Couldn't find anything to draw. Add a background color maybe?</div>
     <!-- Navbar code ends here -->
     <!-- Main Container code starts here -->
     <div class="container-fluid w-100 h-100 p-0">
         <!-- Side Navigation Panel code starts here -->
         <div class="p-1 h-100" id="sidenav">
-                <div class="row p-2">
-                    <span class="row w-50 btn-primary btn-block p-2 mb-2 text-center m-auto" onclick="reset_canvas();" data-toggle="tooltip" data-placement="right" title="Remove all effects / styles">
-                        Reset Canvas
-                    </span>
-                </div>
-                <div id="accordion">
-                    <!-- Background Color pallete option starts here -->
-                    <div class="card">
-                        <div class="card-header p-0" id="headingOne">
-                            <h5 class="mb-0">
-                                <div class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Background Color
-                                </div>
-                            </h5>
-                        </div>
+            <div class="row p-2">
+                <span class="row w-50 btn-primary btn-block p-2 mb-2 text-center m-auto" onclick="reset_canvas();" data-toggle="tooltip"
+                    data-placement="right" title="Remove all effects / styles">
+                    Reset Canvas
+                </span>
+            </div>
+            <div id="accordion">
+                <!-- Background Color pallete option starts here -->
+                <div class="card">
+                    <div class="card-header p-0" id="headingOne">
+                        <h5 class="mb-0">
+                            <div class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Background Color
+                            </div>
+                        </h5>
+                    </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body mt-2 mb-2 p-2">
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body mt-2 mb-2 p-2">
+                            <div class="row input-group m-0">
+                                <div class="col-sm-4 input-group-prepend px-1">
+                                    <label class="input-group-text">Choose</label>
+                                </div>
+                                <div class="col-sm-8 form-control col-sm-8 p-auto ml-2">
+                                    <input class="jscolor {width:101, padding:0, shadow:false,
+                                                borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}" value
+                                        id="bgcolor">
+                                </div>
+                            </div>
+                            <div class="row input-group mt-4 m-0">
+                                <div class="btn-block btn-secondary input-group-append p-1" onclick="update_bg_color();">
+                                    <i class="material-icons m-auto">done</i>
+                                </div>
+                                <div class="btn-block btn-warning input-group-append p-1" onclick="reset_bg_color();">
+                                    <i class="material-icons m-auto">autorenew</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Background Color pallete option ends here -->
+                <!-- ParticlesJS option starts here -->
+                <div class="card" id="effect">
+                    <div class="card-header p-0" id="headingTwo">
+                        <h5 class="mb-0">
+                            <div class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Effects
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body mt-2 mb-2 p-2">
+                            <div class="row input-group mb-3 m-0">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Options</label>
+                                </div>
+                                <select class="custom-select" id="effectsop" onchange="set_effect();">
+                                    <!-- <option value="-1">Choose an effect...</option> -->
+                                    <option value="0" selected>None</option>
+                                    <option value="1">Particles</option>
+                                    <option value="2">Paint</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" id="paint_section">
+                    <div class="card-header p-0" id="headingThree">
+                        <h5 class="mb-0">
+                            <div class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Paint
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body mt-2 mb-2 p-2">
+                            <div class="container p-2 my-2">
+                                <p>Pencil color : </p>
+                                <br>
                                 <div class="row input-group m-0">
                                     <div class="col-sm-4 input-group-prepend px-1">
                                         <label class="input-group-text">Choose </label>
                                     </div>
                                     <div class="col-sm-8 form-control col-sm-8 p-auto ml-2">
-                                            <input class="jscolor {width:101, padding:0, shadow:false,
-                                                borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}" value id="bgcolor">
-                                    </div>
-                                </div>
-                                <div class="row input-group mt-4 m-0">
-                                    <div class="btn-block btn-secondary input-group-append p-1" onclick="update_bg_color();">
-                                        <i class="material-icons m-auto">done</i>
-                                    </div>
-                                    <div class="btn-block btn-warning input-group-append p-1" onclick="reset_bg_color();">
-                                        <i class="material-icons m-auto">autorenew</i>
+                                        <input class="jscolor {width:101, padding:0, shadow:false,
+                                                    borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}" onchange="select_pencil_color()"
+                                            value id="pencil-color">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Background Color pallete option ends here -->
-                    <!-- ParticlesJS option starts here -->
-                    <div class="card" id="effect">
-                        <div class="card-header p-0" id="headingTwo">
-                            <h5 class="mb-0">
-                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Effects
-                                </div>
-                            </h5>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="card-body mt-2 mb-2 p-2">
-                                <div class="row input-group mb-3 m-0">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text">Options</label>
+                </div>
+                <div class="card" id="pjsop">
+                    <div class="card-header p-0" id="headingFour">
+                        <h5 class="mb-0">
+                            <div class="btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Particle properties
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body mt-2 mb-2 p-2">
+                            <div class="container p-2 my-2">
+                                <div class="row input-group m-auto p-2 pt-4 bg-light">
+                                    <div class="col-sm-4 w-100 m-auto p-1">
+                                        <label for="points">Number </label>
                                     </div>
-                                    <select class="custom-select" id="effectsop" onchange="set_effect();">
+                                    <div class="col-sm-8 w-100 m-auto">
+                                        <input class="w-100" type="range" name="weight" id="range_weight" value min="0" max="600" data-show-value="true" oninput="update_particles_num();">
+                                    </div>
+                                </div>
+                                <div class="row input-group m-auto p-2 pt-4 bg-light">
+                                    <div class="col-sm-4 input-group-prepend px-1">
+                                        <label class="input-group-text">Color </label>
+                                    </div>
+                                    <div class="col-sm-8 form-control col-sm-8 py-auto p-auto ml-2">
+                                        <input value id="pcolor" class="jscolor {width:101, padding:0, shadow:false,
+                                                borderWidth:0, backgroundColor:'transparent', insetColor:'#000',onFineChange:'set_particles_color(this)'}">
+                                    </div>
+                                </div>
+                                <div class="row input-group m-auto p-2 pt-4 bg-light">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text">Shape</label>
+                                    </div>
+                                    <select class="custom-select" id="shapeop" onchange="set_particles_shape();">
                                         <!-- <option value="-1">Choose an effect...</option> -->
-                                        <option value="0" selected>None</option>
-                                        <option value="1">Particles</option>
-                                        <option value="2">Paint</option>
+                                        <option value="circle" selected>Circle</option>
+                                        <option value="edge">Edge</option>
+                                        <option value="triangle">Triangle</option>
+                                        <option value="polygon">Polygon</option>
+                                        <option value="star">Star</option>
+                                        <!-- <option value="image">Image</option> -->
                                     </select>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" id="paint_section">
-                        <div class="card-header p-0" id="headingThree">
-                            <h5 class="mb-0">
-                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Paint
-                                </div>
-                            </h5>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body mt-2 mb-2 p-2">
-                                <div class="container p-2 my-2">
-                                    <div class="row input-group m-0">
-                                        <div class="col-sm-4 input-group-prepend px-1">
-                                            <label class="input-group-text">Choose </label>
-                                        </div>
-                                        <div class="col-sm-8 form-control col-sm-8 p-auto ml-2">
-                                                <input class="jscolor {width:101, padding:0, shadow:false,
-                                                    borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}" onchange="select_pencil_color()" value id="pencil-color">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" id="pjsop">
-                        <div class="card-header p-0" id="headingFour">
-                            <h5 class="mb-0">
-                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    Particle properties
-                                </div>
-                            </h5>
-                        </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                            <div class="card-body mt-2 mb-2 p-2">
-                                <div class="container p-2 my-2">
-                                    <div class="row input-group m-auto p-2 pt-4 bg-light">
-                                        <div class="col-sm-4 w-100 m-auto p-1">
-                                            <label for="points">Number </label>
-                                        </div>
-                                        <div class="col-sm-8 w-100 m-auto">
-                                            <input class="w-100" type="range" name="weight" id="range_weight" value min="0" max="600" data-show-value="true" oninput="update_particles_num();">
-                                        </div>
-                                    </div>
-                                    <div class="row input-group m-auto p-2 pt-4 bg-light">
-                                        <div class="col-sm-4 input-group-prepend px-1">
-                                            <label class="input-group-text">Color </label>
-                                        </div>
-                                        <div class="col-sm-8 form-control col-sm-8 py-auto p-auto ml-2">
-                                            <input value id="pcolor" class="jscolor {width:101, padding:0, shadow:false,
-                                                borderWidth:0, backgroundColor:'transparent', insetColor:'#000',onFineChange:'set_particles_color(this)'}">
-                                        </div>
-                                    </div>
-                                    <div class="row input-group m-auto p-2 pt-4 bg-light">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text">Shape</label>
-                                        </div>
-                                        <select class="custom-select" id="shapeop" onchange="set_particles_shape();">
-                                            <!-- <option value="-1">Choose an effect...</option> -->
-                                            <option value="circle" selected>Circle</option>
-                                            <option value="edge">Edge</option>
-                                            <option value="triangle">Triangle</option>
-                                            <option value="polygon">Polygon</option>
-                                            <option value="star">Star</option>
-                                            <!-- <option value="image">Image</option> -->
-                                        </select>
-                                    </div>
-                                    <!-- <div class="row input-group m-auto p-2 pt-4 bg-light">
+                                <!-- <div class="row input-group m-auto p-2 pt-4 bg-light">
                                         <div class="col-sm-4 w-100 m-auto p-1">
                                             <label for="points">Size</label>
                                         </div>
@@ -172,47 +178,47 @@
                                             <input class="w-100" type="range" name="size" id="range_size" value min="0" max="500" data-show-value="true" oninput="set_particles_size();">
                                         </div>
                                     </div> -->
-                                    <div class="row input-group m-auto p-2 pt-4 bg-light">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text">Density Enable</label>
-                                        </div>
-                                        <select class="custom-select" id="densityop" onchange="set_density();">
-                                            <option value="0">Enabled</option>
-                                            <option value="1" selected>Disabled</option>
-                                        </select>
+                                <div class="row input-group m-auto p-2 pt-4 bg-light">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text">Density Enable</label>
                                     </div>
-                                    <div class="row input-group m-auto p-2 pt-4 bg-light" id="dval">
-                                        <div class="row w-100 m-auto py-2">
-                                            <label for="points">Density Value </label>
-                                        </div>
-                                        <div class="row w-100 m-auto">
-                                            <input class="w-100" type="range" name="weight" id="densityvalue" value min="100" max="10000" data-show-value="true" oninput="update_density_val();">
-                                        </div>
+                                    <select class="custom-select" id="densityop" onchange="set_density();">
+                                        <option value="0">Enabled</option>
+                                        <option value="1" selected>Disabled</option>
+                                    </select>
+                                </div>
+                                <div class="row input-group m-auto p-2 pt-4 bg-light" id="dval">
+                                    <div class="row w-100 m-auto py-2">
+                                        <label for="points">Density Value </label>
+                                    </div>
+                                    <div class="row w-100 m-auto">
+                                        <input class="w-100" type="range" name="weight" id="densityvalue" value min="100" max="10000" data-show-value="true" oninput="update_density_val();">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card invsible" id="animate">
-                        <div class="card-header p-0" id="headingFive">
-                            <h5 class="mb-0">
-                                <div class="btn collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                    Add animation
-                                </div>
-                            </h5>
-                        </div>
-                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                            <div class="card-body mt-2 mb-2 p-2">
-                                <div class="container p-2 my-2">
-                                    <div class="row input-group m-auto p-2 bg-light">
-                                        <div class="col-sm-8 w-100 m-auto p-1">
-                                            <label for="points">Animate Particle Size </label>
-                                        </div>
-                                        <div class="col-sm-4 w-100 m-auto">
-                                            <input class="w-100" type="checkbox" id="anim_cb" onclick="anim_particles();">
-                                        </div>
+                </div>
+                <div class="card invsible" id="animate">
+                    <div class="card-header p-0" id="headingFive">
+                        <h5 class="mb-0">
+                            <div class="btn collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                Add animation
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                        <div class="card-body mt-2 mb-2 p-2">
+                            <div class="container p-2 my-2">
+                                <div class="row input-group m-auto p-2 bg-light">
+                                    <div class="col-sm-8 w-100 m-auto p-1">
+                                        <label for="points">Animate Particle Size </label>
                                     </div>
-                                    <!-- <div class="row input-group m-auto p-2 pt-4 bg-light" id="asize_op">
+                                    <div class="col-sm-4 w-100 m-auto">
+                                        <input class="w-100" type="checkbox" id="anim_cb" onclick="anim_particles();">
+                                    </div>
+                                </div>
+                                <!-- <div class="row input-group m-auto p-2 pt-4 bg-light" id="asize_op">
                                         <div class="col-sm-4 m-auto p-1">
                                             <label for="points">Animation Speed </label>
                                         </div>
@@ -220,54 +226,54 @@
                                             <input class="w-100" type="range" name="animspeed" id="animspeedrange" value min="0" max="300" data-show-value="true" oninput="setpAnimSpeed();">
                                         </div>
                                     </div> -->
-                                    <div class="row input-group m-auto p-2 bg-light">
-                                        <div class="col-sm-8 w-100 m-auto p-1">
-                                            <label for="points">Animate Particle Opacity </label>
-                                        </div>
-                                        <div class="col-sm-4 w-100 m-auto">
-                                            <input class="w-100" type="checkbox" id="aopacity" onclick="anim_particles_opacity();">
-                                        </div>
+                                <div class="row input-group m-auto p-2 bg-light">
+                                    <div class="col-sm-8 w-100 m-auto p-1">
+                                        <label for="points">Animate Particle Opacity </label>
                                     </div>
-                                    <div class="row input-group m-auto p-2 bg-light invisible" id="raopacityop">
-                                        <div class="col-sm-8 w-100 m-auto p-1">
-                                            <label for="points">Randomise Particle Opacity </label>
-                                        </div>
-                                        <div class="col-sm-4 w-100 m-auto">
-                                            <input class="w-100" type="checkbox" id="raopacity" onclick="randomise_opacity();">
-                                        </div>
+                                    <div class="col-sm-4 w-100 m-auto">
+                                        <input class="w-100" type="checkbox" id="aopacity" onclick="anim_particles_opacity();">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" id="particle_presets">
-                        <div class="card-header p-0" id="collapseSix">
-                            <h5 class="mb-0">
-                                <div class="btn" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                                    Particle Presets
-                                </div>
-                            </h5>
-                        </div>
-
-                        <div id="collapseSix" class="collapse" aria-labelledby="collapseSix" data-parent="#accordion">
-                            <div class="card-body mt-2 mb-2 p-2">
-                                <div class="row input-group mb-3 m-0">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text">Options</label>
+                                <div class="row input-group m-auto p-2 bg-light invisible" id="raopacityop">
+                                    <div class="col-sm-8 w-100 m-auto p-1">
+                                        <label for="points">Randomise Particle Opacity </label>
                                     </div>
-                                    <select class="custom-select" id="presetop" onchange="set_preset();">
-                                        <option value="0" selected>None</option>
-                                        <option value="1">Preset 1</option>
-                                        <option value="2">Preset 2</option>
-                                        <option value="3">Preset 3</option>
-                                    </select>
+                                    <div class="col-sm-4 w-100 m-auto">
+                                        <input class="w-100" type="checkbox" id="raopacity" onclick="randomise_opacity();">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="card" id="particle_presets">
+                    <div class="card-header p-0" id="collapseSix">
+                        <h5 class="mb-0">
+                            <div class="btn" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                Particle Presets
+                            </div>
+                        </h5>
+                    </div>
+
+                    <div id="collapseSix" class="collapse" aria-labelledby="collapseSix" data-parent="#accordion">
+                        <div class="card-body mt-2 mb-2 p-2">
+                            <div class="row input-group mb-3 m-0">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Options</label>
+                                </div>
+                                <select class="custom-select" id="presetop" onchange="set_preset();">
+                                    <option value="0" selected>None</option>
+                                    <option value="1">Preset 1</option>
+                                    <option value="2">Preset 2</option>
+                                    <option value="3">Preset 3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Side Navigation Panel code ends here -->
+        </div>
+        <!-- Side Navigation Panel code ends here -->
         <!-- Tool container code starts here -->
         <div class="row h-100">
             <div class="col mr-auto bg-light" id="usercanvas">
