@@ -54,7 +54,7 @@ function canvas_init(type=null) {
     $('canvas').remove();
   }
   if(type==='paint') {
-    $('#particles-js').append($('<canvas id="paint-canvas" style="height: 100%;width: 100%;"></canvas>'));
+    $('#particles-js').append($('<canvas id="paint-canvas"></canvas>'));
   } else {
     $('#particles-js').append($('<canvas class="particles-js-canvas-el" style="height: 100%;width: 100%;"></canvas>'));
   }

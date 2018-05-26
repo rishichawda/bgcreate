@@ -1,38 +1,39 @@
-var pencil_color = '#FFFFFF';
+$(document).on('build', '#paint-canvas', function () {
+    var canvas = document.getElementById('paint-canvas');
+    var paint_style = getComputedStyle($('#particles-js')[0]);
+    canvas.width = parseInt(paint_style.getPropertyValue('width'));
+    canvas.height = parseInt(paint_style.getPropertyValue('height'));
+    var mouse = {
+        x: 0,
+        y: 0
+    };
 
-$(document).on('build','#paint-canvas',function(){ 
-    var paint_canvas = false;
-    var context = this.getContext('2d');
-    $('#paint-canvas').on('mousedown',function(e){
-        var x_pos = e.pageX - this.offsetLeft;
-        var y_pos = e.pageY - this.offsetTop;
-        context.strokeStyle = pencil_color;
-        context.lineWidth = 7;
-        paint_canvas = true;
+    var context = canvas.getContext('2d');
+    canvas.addEventListener('mousemove', function (e) {
+        mouse.x = e.pageX - this.offsetLeft + 16;
+        mouse.y = e.pageY - this.offsetTop - 56;
+    }, false);
+
+    canvas.addEventListener('mousedown', function (e) {
         context.beginPath();
-        context.moveTo(x_pos,y_pos);
-    });
-    
-    $('#paint-canvas').on('mouseup',function(e){
-        paint_canvas = false;
+        context.moveTo(mouse.x, mouse.y);
+        context.lineWidth = 2;
+        context.lineJoin = 'round';
+        context.lineCap = 'round';
+        context.strokeStyle = '#' + document.getElementById('pencil-color').value;
+        canvas.addEventListener('mousemove', onPaint, false);
+    }, false);
+
+    canvas.addEventListener('mouseup', function () {
+        canvas.removeEventListener('mousemove', onPaint, false);
+    }, false);
+
+    canvas.addEventListener('mouseleave', function () {
+        canvas.removeEventListener('mousemove', onPaint, false);
+    }, false);
+
+    var onPaint = function () {
+        context.lineTo(mouse.x, mouse.y);
         context.stroke();
-    });
-
-    $('#paint-canvas').on('mouseleave',function(e){
-        paint_canvas = false;
-        context.stroke();
-    });
-    
-    $('#paint-canvas').on('mousemove',function(e){
-        if(paint_canvas) { 
-            var x_pos = e.pageX - this.offsetLeft;
-            var y_pos = e.pageY - this.offsetTop;
-            context.lineTo(x_pos,y_pos);
-        }
-    });
- });
-
-function select_pencil_color() { 
-    pencil_color = '#' + $('#pencil-color')[0].value;
- }
-
+    };
+});
