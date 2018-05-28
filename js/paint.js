@@ -17,7 +17,7 @@ $(document).on('build', '#paint-canvas', function () {
     canvas.addEventListener('mousedown', function (e) {
         context.beginPath();
         context.moveTo(mouse.x, mouse.y);
-        context.lineWidth = 2;
+        context.lineWidth = document.getElementById('pencil-size').value;
         context.lineJoin = 'round';
         context.lineCap = 'round';
         context.strokeStyle = '#' + document.getElementById('pencil-color').value;
