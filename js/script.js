@@ -1,6 +1,7 @@
 const user_config_initial = 'js/particles.json';
 var user_prefs = {
   bg_color: "#FFFFFF",
+  paint: false,
   particles_load: false,
   particles_color: '',
   particles_num: 110,
@@ -102,6 +103,7 @@ function set_effect() {
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
       user_prefs.particles_load = false;
+      user_prefs.paint = false;
       break;
     case "1":
       load_json_config(user_config_initial, true);
@@ -110,6 +112,7 @@ function set_effect() {
       show_block(document.getElementById('animate'));
       $('body > nav > div.my-2 > i:nth-child(1)').show();
       user_prefs.particles_load = true;
+      user_prefs.paint = false;
       break;
     case "2":
       if (confirm('Are you sure you want to proceed? Selecting this option will remove your current progress and reset the canvas.')) {
@@ -120,6 +123,7 @@ function set_effect() {
         hide_block(document.getElementById('pjsop'));
         hide_block(document.getElementById('animate'));
         user_prefs.particles_load = false;
+        user_prefs.paint = true;
         // $('body > nav > div.my-2 > i:nth-child(1)').show();
       } else {
         if (user_prefs.particles_load) {
@@ -290,13 +294,13 @@ function hide_block(targetElement) {
 
 function get_image() {
   var canvas = document.getElementsByTagName('canvas')[0];
-  if (user_prefs.bg_color === "#FFFFFF" && user_prefs.particles_load === false) {
+  if (user_prefs.bg_color === "#FFFFFF" && user_prefs.particles_load === false && user_prefs.paint === false) {
     show_block(document.getElementById('error_message'));
     setTimeout(() => {
       // $('.alert').alert('close');
       hide_block(document.getElementById('error_message'));
     }, 2900)
-  } else if (user_prefs.bg_color !== "#FFFFFF" && user_prefs.particles_load === false) {
+  } else if (user_prefs.bg_color !== "#FFFFFF" && user_prefs.particles_load === false && user_prefs.paint === false) {
     // $('.alert').alert('close');
     finalimage = document.createElement("canvas");
     finalimage_canvascontext = finalimage.getContext('2d');
