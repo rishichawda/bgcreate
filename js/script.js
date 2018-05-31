@@ -13,6 +13,7 @@ $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
   $('body > nav > div.my-2 > i:nth-child(1)').hide();
   $('#sidenav').hide();
+  $('#particle_presets').hide();
   $('#paint_section').hide();
   canvas_init();
 });
@@ -102,6 +103,8 @@ function set_effect() {
       $('#paint_section').hide();
       hide_block(document.getElementById('pjsop'));
       hide_block(document.getElementById('animate'));
+      $('#particle_presets').hide();
+      $('body > nav > div.my-2 > i:nth-child(1)').hide();
       user_prefs.particles_load = false;
       user_prefs.paint = false;
       break;
@@ -110,17 +113,20 @@ function set_effect() {
       $('#paint_section').hide();
       show_block(document.getElementById('pjsop'));
       show_block(document.getElementById('animate'));
+      $('#particle_presets').show();
       $('body > nav > div.my-2 > i:nth-child(1)').show();
       user_prefs.particles_load = true;
       user_prefs.paint = false;
       break;
-    case "2":
+      case "2":
       if (confirm('Are you sure you want to proceed? Selecting this option will remove your current progress and reset the canvas.')) {
         canvas_init('paint');
         var event = $.Event('build');
         $('#paint-canvas').trigger(event);
         $('#paint_section').show();
         hide_block(document.getElementById('pjsop'));
+        $('#particle_presets').hide();
+        $('body > nav > div.my-2 > i:nth-child(1)').hide();
         hide_block(document.getElementById('animate'));
         user_prefs.particles_load = false;
         user_prefs.paint = true;
