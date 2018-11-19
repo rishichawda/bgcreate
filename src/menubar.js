@@ -40,32 +40,28 @@ class MenuBar extends Component {
     },
   ];
 
-   getOverlflowItems = () => [
-     {
-       key: 'move',
-       name: 'Move to...',
-       onClick: () => console.log('Move to'),
-       iconProps: {
-         iconName: 'MoveToFolder',
+   getOverlflowItems = () => {
+     const { showToolbar } = this.props;
+     return [
+       {
+         key: 'menu',
+         name: 'Show toolbar',
+         iconProps: {
+           iconName: 'ColorSolid',
+         },
+         onClick: () => showToolbar(),
        },
-     },
-     {
-       key: 'copy',
-       name: 'Copy to...',
-       onClick: () => console.log('Copy to'),
-       iconProps: {
-         iconName: 'Copy',
+       {
+         key: 'rename',
+         name: 'Rename...',
+         secondaryText: '(Currently not available.)',
+         disabled: true,
+         iconProps: {
+           iconName: 'Edit',
+         },
        },
-     },
-     {
-       key: 'rename',
-       name: 'Rename...',
-       onClick: () => console.log('Rename'),
-       iconProps: {
-         iconName: 'Edit',
-       },
-     },
-   ];
+     ];
+   };
 
    getFarItems = () => [
      {
