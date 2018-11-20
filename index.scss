@@ -83,3 +83,11 @@ div[data-toolbar-item=bg-color-display] {
         border: 1px solid #c8c6c4;
     }
 }
+
+#particles-js {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
