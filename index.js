@@ -5,7 +5,7 @@ import { initializeIcons } from '@uifabric/icons';
 import MenuBar from './src/menubar';
 import Toolbar from './src/toolbar';
 import './index.scss';
-import Canvas from './src/components/canvas';
+import Canvas from './src/components/canvas/index.js';
 import store from './src/store';
 
 initializeIcons();
