@@ -3,7 +3,6 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
   entry: `${__dirname}/index.js`,
   output: {
     path: `${__dirname}/dist`,
@@ -31,6 +30,9 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
     new HTMLWebpackPlugin({
       template: './public/index.html',
     }),
