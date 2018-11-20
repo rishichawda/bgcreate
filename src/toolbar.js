@@ -1,24 +1,24 @@
 import React from 'react';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { CommandBarButton } from 'office-ui-fabric-react';
 import ToolbarOptions from './toolbarOptions';
 
-class Toolbar extends React.Component {
-  render() {
-    const { showPanel, closePanel } = this.props;
-    return (
-      <div>
-        <Panel
-          isOpen={showPanel}
-          type={PanelType.smallFixedNear}
-          // tslint:disable-next-line:jsx-no-lambda
-          onDismiss={closePanel}
-        >
-          <ToolbarOptions />
-        </Panel>
-      </div>
-    );
-  }
-}
+const Toolbar = ({ showPanel, closePanel }) => (
+  <div>
+    <Panel
+      isOpen={showPanel}
+      type={PanelType.smallFixedNear}
+      onDismiss={closePanel}
+    >
+      <CommandBarButton
+        data-toolbar-option="reset-canvas"
+        iconProps={{ iconName: 'Refresh' }}
+        text="Reset Canvas"
+        onClick={() => alert('Reset Canvas Clicked')}
+      />
+      <ToolbarOptions />
+    </Panel>
+  </div>
+);
 
 export default Toolbar;

@@ -28,7 +28,6 @@ class MenuBar extends Component {
         iconName: 'Share',
       },
       disabled: true,
-      onClick: () => console.log('Share'),
     },
     {
       key: 'download',
@@ -36,7 +35,6 @@ class MenuBar extends Component {
       iconProps: {
         iconName: 'Download',
       },
-      onClick: () => console.log('Download'),
     },
   ];
 
