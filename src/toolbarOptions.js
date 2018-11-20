@@ -1,6 +1,13 @@
 import * as React from 'react';
-import { CommandBarButton, AnimationClassNames, DefaultButton } from 'office-ui-fabric-react';
+import { connect } from 'react-redux';
+import {
+  CommandBarButton,
+  AnimationClassNames,
+  DefaultButton,
+} from 'office-ui-fabric-react';
+import { bindActionCreators } from 'redux';
 import BackgroundColorPicker from './colorPicker';
+import { updateBackground } from './actions';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -14,11 +21,12 @@ class ToolbarOptions extends React.Component {
     this.setState(prevState => ({
       [`${identifier}`]: !prevState[identifier],
     }));
-  }
+  };
 
   updateCanvasBackground = (color) => {
-    console.log(color);
-  }
+    const { updateBackground } = this.props;
+    updateBackground(color);
+  };
 
   render() {
     const { collapseOne } = this.state;
@@ -30,9 +38,7 @@ class ToolbarOptions extends React.Component {
     };
     return (
       <div className="toolbar">
-        <CommandBarButton
-          {...collapseOneProps}
-        />
+        <CommandBarButton {...collapseOneProps} />
         {!collapseOne ? (
           <div className={`${AnimationClassNames.scaleUpIn100}`}>
             <BackgroundColorPicker onUpdate={this.updateCanvasBackground}>
@@ -44,12 +50,17 @@ class ToolbarOptions extends React.Component {
               />
             </BackgroundColorPicker>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
       </div>
     );
   }
 }
 
-export default ToolbarOptions;
+const mapDispatch = dispatch => ({
+  updateBackground: bindActionCreators(updateBackground, dispatch),
+});
+
+export default connect(
+  null,
+  mapDispatch,
+)(ToolbarOptions);
