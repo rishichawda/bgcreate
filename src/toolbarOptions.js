@@ -65,7 +65,7 @@ class ToolbarOptions extends React.Component {
           <div className={`collapseTwoContent ${AnimationClassNames.scaleUpIn100}`}>
             <Dropdown
               placeholder="Select an option"
-              label="Choose an canvas type :"
+              label="Choose a canvas type :"
               id="effects-dropdown"
               ariaLabel="Effects dropdown"
               options={[
