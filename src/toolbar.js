@@ -7,6 +7,7 @@ const Toolbar = ({ showPanel, closePanel }) => (
   <div>
     <Panel
       isOpen={showPanel}
+      isHiddenOnDismiss
       type={PanelType.smallFixedNear}
       onDismiss={closePanel}
     >
