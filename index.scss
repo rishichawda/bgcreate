@@ -56,7 +56,7 @@ body {
     padding: 0;
 }
 
-*[data-toolbar-option=bg-selector] {
+*[data-toolbar-option=bg-selector], *[data-toolbar-option=effect-selector] {
     padding: 1em;
     width: 100%;
 }
@@ -91,4 +91,13 @@ div[data-toolbar-item=bg-color-display] {
     position: absolute;
     top: 0;
     z-index: -1;
+}
+
+#effects-dropdown {
+    width: 88%;
+    margin: auto;
+}
+
+.collapseTwoContent {
+    padding: 1em;
 }
