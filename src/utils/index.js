@@ -1,1 +1,1 @@
-export { default as hexToRgb } from './hexToRgb';
+export { hexToRgb, isHexFormat } from './colors';
