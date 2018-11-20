@@ -54,3 +54,32 @@ body {
 .ms-Panel-content {
     padding: 0;
 }
+
+*[data-toolbar-option=bg-selector] {
+    padding: 1em;
+    width: 100%;
+}
+
+*[data-toolbar-option=reset-canvas] {
+    padding: 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 81.2%;
+}
+
+div[data-toolbar-item=bg-color-display] {
+    width: 88%;
+    height: 2em;
+    margin: auto;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .palette {
+        flex: 1;
+        margin-right: 0.2em;
+        height: 100%;
+        border: 1px solid #c8c6c4;
+    }
+}
