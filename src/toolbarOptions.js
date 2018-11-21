@@ -6,10 +6,14 @@ import {
   DefaultButton,
   Dropdown,
   DropdownMenuItemType,
+  Dialog,
+  DialogFooter,
+  PrimaryButton,
+  DialogType,
 } from 'office-ui-fabric-react';
 import { bindActionCreators } from 'redux';
 import BackgroundColorPicker from './colorPicker';
-import { updateBackground } from './actions';
+import { updateBackground, resetCanvasState } from './actions';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -17,6 +21,8 @@ class ToolbarOptions extends React.Component {
     this.state = {
       collapseOne: false,
       collapseTwo: true,
+      showModal: false,
+      selectedType: 'no-effect',
     };
   }
 
@@ -26,13 +32,47 @@ class ToolbarOptions extends React.Component {
     }));
   };
 
+  closeModal = (_, setType = null) => {
+    this.setState(prevState => ({
+      showModal: false,
+      selectedType: setType === null ? prevState.selectedType : setType,
+    }));
+  }
+
+  switchToPaint = () => {
+    const { resetCanvas } = this.props;
+    this.closeModal(null, 'paint');
+    resetCanvas();
+  }
+
   updateCanvasBackground = (color) => {
     const { updateBackground } = this.props;
     updateBackground(color);
   };
 
+  updateCanvasType = (_, options) => {
+    const { resetCanvas } = this.props;
+    switch (options.key) {
+      case 'paint':
+        this.setState({
+          showModal: true,
+        });
+        break;
+      case 'no-effect':
+        this.setState({
+          selectedType: options.key,
+        });
+        resetCanvas();
+        break;
+      default:
+        break;
+    }
+  }
+
   render() {
-    const { collapseOne, collapseTwo } = this.state;
+    const {
+      collapseOne, collapseTwo, showModal, selectedType,
+    } = this.state;
     const collapseOneProps = {
       'data-toolbar-option': 'bg-selector',
       iconProps: { iconName: collapseOne ? 'ChevronDown' : 'ChevronUp' },
@@ -69,16 +109,42 @@ class ToolbarOptions extends React.Component {
               id="effects-dropdown"
               ariaLabel="Effects dropdown"
               options={[
-                { key: 'none', text: 'None', title: 'No effect' },
+                { key: 'no-effect', text: 'None', title: 'No effect' },
                 { key: 'divider_0', text: '-', itemType: DropdownMenuItemType.Divider },
                 { key: 'particles', text: 'Particles' },
                 { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
                 { key: 'paint', text: 'Paint' },
               ]}
+              selectedKey={selectedType}
+              onChange={this.updateCanvasType}
             />
             <p>You can currently choose between particles effect and a paint tool / canvas where you can draw using mouse.</p>
           </div>
         ) : null}
+        <Dialog
+          hidden={!showModal}
+          onDismiss={this.closeModal}
+          dialogContentProps={{
+            type: DialogType.normal,
+            title: 'Are you sure?',
+            subText:
+              'Switching to paint mode will reset the canvas and you might lose any changes that were made. If you want the current changes, first please download the image from the download button in the menu bar.',
+          }}
+          modalProps={{
+            titleAriaId: 'myLabelId',
+            subtitleAriaId: 'mySubTextId',
+            isBlocking: false,
+            containerClassName: 'ms-dialogMainOverride',
+          }}
+        >
+          {
+            null /** You can also include null values as the result of conditionals */
+          }
+          <DialogFooter>
+            <PrimaryButton onClick={this.switchToPaint} text="Yes" />
+            <DefaultButton onClick={this.closeModal} text="No" />
+          </DialogFooter>
+        </Dialog>
       </div>
     );
   }
@@ -86,6 +152,7 @@ class ToolbarOptions extends React.Component {
 
 const mapDispatch = dispatch => ({
   updateBackground: bindActionCreators(updateBackground, dispatch),
+  resetCanvas: bindActionCreators(resetCanvasState, dispatch),
 });
 
 export default connect(

@@ -1,16 +1,19 @@
 import { isHexFormat, hexToRgb } from '../utils';
 import { BG_UPDATE } from '../shared/actionTypes';
 
-export const updateBackground = (color) => {
+const setBackground = payload => ({
+  type: BG_UPDATE,
+  payload,
+});
+
+export const resetCanvasState = () => (dispatch) => {
+  dispatch(setBackground('#fff'));
+};
+
+export const updateBackground = color => (dispatch) => {
   if (isHexFormat(color)) {
     const rgb = hexToRgb(color);
-    return {
-      type: BG_UPDATE,
-      payload: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`,
-    };
+    dispatch(setBackground(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`));
   }
-  return {
-    type: BG_UPDATE,
-    payload: color,
-  };
+  dispatch(setBackground(color));
 };

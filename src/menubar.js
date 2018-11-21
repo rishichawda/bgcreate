@@ -12,7 +12,7 @@ class MenuBar extends Component {
 
   // Data for CommandBar
   getItems = () => {
-    const { showToolbar } = this.props;
+    const { showToolbar, showModal } = this.props;
     return [
       {
         key: 'newItem',
@@ -57,6 +57,7 @@ class MenuBar extends Component {
         iconProps: {
           iconName: 'Download',
         },
+        onClick: () => showModal(),
       },
     ];
   }
