@@ -18,6 +18,7 @@ class Canvas extends Component {
   updateCanvasBackground = (color) => {
     const { height, width } = this.canvasRef.current.getBoundingClientRect();
     const ctx = this.canvasRef.current.getContext('2d');
+    ctx.clearRect(0, 0, width, height);
     ctx.beginPath();
     ctx.rect(0, 0, height, width);
     ctx.fillStyle = color;
