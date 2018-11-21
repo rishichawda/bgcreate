@@ -32,7 +32,7 @@ class ToolbarOptions extends React.Component {
     }));
   };
 
-  closeModal = (setType = null) => {
+  closeModal = (_, setType = null) => {
     this.setState(prevState => ({
       showModal: false,
       selectedType: setType === null ? prevState.selectedType : setType,
@@ -40,7 +40,7 @@ class ToolbarOptions extends React.Component {
   }
 
   switchToPaint = () => {
-    this.closeModal('paint');
+    this.closeModal(null, 'paint');
   }
 
   updateCanvasBackground = (color) => {
