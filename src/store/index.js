@@ -1,5 +1,5 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
-import reduxPromise from 'redux-promise';
+import reduxThunk from 'redux-thunk';
 import reduxLogger from 'redux-logger';
 import { bg } from '../reducers';
 
@@ -7,7 +7,7 @@ const rootReducer = combineReducers({
   bgColor: bg,
 });
 
-const middleWares = [reduxPromise];
+const middleWares = [reduxThunk];
 
 if (process.env.NODE_ENV === 'development') {
   middleWares.push(reduxLogger);
