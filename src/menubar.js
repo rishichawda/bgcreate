@@ -11,16 +11,57 @@ class MenuBar extends Component {
   }
 
   // Data for CommandBar
-  getItems = () => [
-    {
-      key: 'newItem',
-      name: 'New',
-      cacheKey: 'myCacheKey', // changing this key will invalidate this items cache
-      iconProps: {
-        iconName: 'Add',
+  getItems = () => {
+    const { showToolbar } = this.props;
+    return [
+      {
+        key: 'newItem',
+        name: 'New',
+        cacheKey: 'myCacheKey', // changing this key will invalidate this items cache
+        iconProps: {
+          iconName: 'Add',
+        },
+        ariaLabel: 'Use left and right arrow keys to navigate',
       },
-      ariaLabel: 'Use left and right arrow keys to navigate',
-    },
+      {
+        key: 'edit',
+        name: 'Edit',
+        iconProps: {
+          iconName: 'Edit',
+        },
+        subMenuProps: {
+          items: [
+            {
+              key: 'menu',
+              name: 'Show toolbar',
+              iconProps: {
+                iconName: 'ColorSolid',
+              },
+              onClick: () => showToolbar(),
+            },
+            {
+              key: 'rename',
+              name: 'Rename...',
+              secondaryText: '(Currently not available.)',
+              disabled: true,
+              iconProps: {
+                iconName: 'Edit',
+              },
+            },
+          ],
+        },
+      },
+      {
+        key: 'download',
+        name: 'Download',
+        iconProps: {
+          iconName: 'Download',
+        },
+      },
+    ];
+  }
+
+  getOverlflowItems = () => [
     {
       key: 'share',
       name: 'Share',
@@ -29,52 +70,22 @@ class MenuBar extends Component {
       },
       disabled: true,
     },
+  ];
+
+  getFarItems = () => [
     {
-      key: 'download',
-      name: 'Download',
+      key: 'info',
+      name: 'About',
       iconProps: {
-        iconName: 'Download',
+        iconName: 'Info',
       },
+      onClick: () => this.showModal(),
     },
   ];
 
-   getOverlflowItems = () => {
-     const { showToolbar } = this.props;
-     return [
-       {
-         key: 'menu',
-         name: 'Show toolbar',
-         iconProps: {
-           iconName: 'ColorSolid',
-         },
-         onClick: () => showToolbar(),
-       },
-       {
-         key: 'rename',
-         name: 'Rename...',
-         secondaryText: '(Currently not available.)',
-         disabled: true,
-         iconProps: {
-           iconName: 'Edit',
-         },
-       },
-     ];
-   };
-
-   getFarItems = () => [
-     {
-       key: 'info',
-       name: 'About',
-       iconProps: {
-         iconName: 'Info',
-       },
-       onClick: () => this.showModal(),
-     },
-   ];
-
-   showModal = () => {
-     this.setState({ showModal: true });
-   };
+  showModal = () => {
+    this.setState({ showModal: true });
+  };
 
   closeModal = () => {
     this.setState({ showModal: false });
