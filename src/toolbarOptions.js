@@ -13,7 +13,7 @@ import {
 } from 'office-ui-fabric-react';
 import { bindActionCreators } from 'redux';
 import BackgroundColorPicker from './colorPicker';
-import { updateBackground } from './actions';
+import { updateBackground, resetCanvasState } from './actions';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -40,7 +40,9 @@ class ToolbarOptions extends React.Component {
   }
 
   switchToPaint = () => {
+    const { resetCanvas } = this.props;
     this.closeModal(null, 'paint');
+    resetCanvas();
   }
 
   updateCanvasBackground = (color) => {
@@ -49,6 +51,7 @@ class ToolbarOptions extends React.Component {
   };
 
   updateCanvasType = (_, options) => {
+    const { resetCanvas } = this.props;
     switch (options.key) {
       case 'paint':
         this.setState({
@@ -59,6 +62,7 @@ class ToolbarOptions extends React.Component {
         this.setState({
           selectedType: options.key,
         });
+        resetCanvas();
         break;
       default:
         break;
@@ -148,6 +152,7 @@ class ToolbarOptions extends React.Component {
 
 const mapDispatch = dispatch => ({
   updateBackground: bindActionCreators(updateBackground, dispatch),
+  resetCanvas: bindActionCreators(resetCanvasState, dispatch),
 });
 
 export default connect(
