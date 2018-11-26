@@ -13,7 +13,7 @@ import {
 } from 'office-ui-fabric-react';
 import { bindActionCreators } from 'redux';
 import BackgroundColorPicker from './colorPicker';
-import { updateBackground, resetCanvasState } from './actions';
+import { updateBackground, resetCanvasState, switchMode } from './actions';
 import { loadParticles } from './utils';
 
 class ToolbarOptions extends React.Component {
@@ -41,8 +41,9 @@ class ToolbarOptions extends React.Component {
   }
 
   switchToPaint = () => {
-    const { resetCanvas } = this.props;
+    const { resetCanvas, switchMode } = this.props;
     this.closeModal(null, 'paint');
+    switchMode('paint');
     resetCanvas();
   }
 
@@ -52,7 +53,7 @@ class ToolbarOptions extends React.Component {
   };
 
   updateCanvasType = (_, options) => {
-    const { resetCanvas } = this.props;
+    const { resetCanvas, switchMode } = this.props;
     switch (options.key) {
       case 'paint':
         this.setState({
@@ -61,12 +62,14 @@ class ToolbarOptions extends React.Component {
         break;
       case 'particles':
         resetCanvas();
+        switchMode(options.key);
         loadParticles();
         break;
       case 'no-effect':
         this.setState({
           selectedType: options.key,
         });
+        switchMode(options.key);
         resetCanvas();
         break;
       default:
@@ -158,6 +161,7 @@ class ToolbarOptions extends React.Component {
 const mapDispatch = dispatch => ({
   updateBackground: bindActionCreators(updateBackground, dispatch),
   resetCanvas: bindActionCreators(resetCanvasState, dispatch),
+  switchMode: bindActionCreators(switchMode, dispatch),
 });
 
 export default connect(

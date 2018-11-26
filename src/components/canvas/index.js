@@ -17,8 +17,8 @@ class Canvas extends Component {
   }
 
   saveImage = () => {
-    const { closeModal, canvasBg } = this.props;
-    generateImage(canvasBg);
+    const { closeModal, canvasBg, canvasMode } = this.props;
+    generateImage(canvasBg, canvasMode);
     closeModal();
   };
 
@@ -60,8 +60,9 @@ class Canvas extends Component {
   }
 }
 
-const mapProps = ({ bgColor }) => ({
+const mapProps = ({ bgColor, mode }) => ({
   canvasBg: bgColor,
+  canvasMode: mode,
 });
 
 export default connect(
