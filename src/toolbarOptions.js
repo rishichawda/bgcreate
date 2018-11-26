@@ -72,12 +72,13 @@ class ToolbarOptions extends React.Component {
       case 'no-effect':
         if (selectedType === 'particles') {
           unloadParticles();
+        } else {
+          resetCanvasBackground();
         }
         this.setState({
           selectedType: options.key,
         });
         switchEditMode(options.key);
-        resetCanvasBackground();
         break;
       default:
         break;
