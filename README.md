@@ -1,5 +1,5 @@
 # bgcreate
-Create background images with particles effect and download files to your local device.
+Create background images with particles or paint tool and download them to your local device.
 
 **NOTE** : The application is currently being ported to react for major design changes and various improvements.
 
