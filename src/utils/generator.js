@@ -2,6 +2,7 @@ const generateDownloadLink = (image) => {
   const a = document.createElement('a');
   a.href = image.toDataURL('image/jpeg').replace('image/jpeg', 'image/octet-stream');
   a.download = 'bgGeneratorImage.jpg';
+  document.body.appendChild(a);
   a.click();
 };
 
