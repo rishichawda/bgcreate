@@ -14,6 +14,7 @@ import {
 import { bindActionCreators } from 'redux';
 import BackgroundColorPicker from './colorPicker';
 import { updateBackground, resetCanvasState } from './actions';
+import { loadParticles } from './utils';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -57,6 +58,10 @@ class ToolbarOptions extends React.Component {
         this.setState({
           showModal: true,
         });
+        break;
+      case 'particles':
+        resetCanvas();
+        loadParticles();
         break;
       case 'no-effect':
         this.setState({
