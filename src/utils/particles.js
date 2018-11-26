@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 
-export function loadParticles() {
+export function loadParticles(callback) {
   particlesJS.load('particles-js', './assets/particles-config.json', () => {
-    console.log('particles loaded');
+    if (callback) {
+      callback();
+    }
   });
 }
 
