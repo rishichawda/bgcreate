@@ -41,19 +41,19 @@ class ToolbarOptions extends React.Component {
   }
 
   switchToPaint = () => {
-    const { resetCanvas, switchMode } = this.props;
+    const { resetCanvasBackground, switchEditMode } = this.props;
     this.closeModal(null, 'paint');
-    switchMode('paint');
-    resetCanvas();
+    switchEditMode('paint');
+    resetCanvasBackground();
   }
 
   updateCanvasBackground = (color) => {
-    const { updateBackground } = this.props;
-    updateBackground(color);
+    const { updateCanvasBackground } = this.props;
+    updateCanvasBackground(color);
   };
 
   updateCanvasType = (_, options) => {
-    const { resetCanvas, switchMode } = this.props;
+    const { resetCanvasBackground, switchEditMode } = this.props;
     switch (options.key) {
       case 'paint':
         this.setState({
@@ -61,16 +61,16 @@ class ToolbarOptions extends React.Component {
         });
         break;
       case 'particles':
-        resetCanvas();
-        switchMode(options.key);
+        switchEditMode(options.key);
+        resetCanvasBackground();
         loadParticles();
         break;
       case 'no-effect':
         this.setState({
           selectedType: options.key,
         });
-        switchMode(options.key);
-        resetCanvas();
+        switchEditMode(options.key);
+        resetCanvasBackground();
         break;
       default:
         break;
@@ -126,7 +126,10 @@ class ToolbarOptions extends React.Component {
               selectedKey={selectedType}
               onChange={this.updateCanvasType}
             />
-            <p>You can currently choose between particles effect and a paint tool / canvas where you can draw using mouse.</p>
+            <p>
+              You can currently choose between particles
+              effect and a paint tool / canvas where you can draw using mouse.
+            </p>
           </div>
         ) : null}
         <Dialog
@@ -159,9 +162,9 @@ class ToolbarOptions extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  updateBackground: bindActionCreators(updateBackground, dispatch),
-  resetCanvas: bindActionCreators(resetCanvasState, dispatch),
-  switchMode: bindActionCreators(switchMode, dispatch),
+  updateCanvasBackground: bindActionCreators(updateBackground, dispatch),
+  resetCanvasBackground: bindActionCreators(resetCanvasState, dispatch),
+  switchEditMode: bindActionCreators(switchMode, dispatch),
 });
 
 export default connect(
