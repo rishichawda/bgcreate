@@ -26,6 +26,7 @@ class ToolbarOptions extends React.Component {
       showModal: false,
       selectedType: 'no-effect',
     };
+    this.resetCanvasBackground = this.updateCanvasBackground.bind(this, '#fff');
   }
 
   toggleCollapse = (identifier) => {
@@ -42,10 +43,10 @@ class ToolbarOptions extends React.Component {
   }
 
   switchToPaint = () => {
-    const { resetCanvasBackground, switchEditMode } = this.props;
+    const { switchEditMode, resetCanvas } = this.props;
     this.closeModal(null, 'paint');
+    resetCanvas();
     switchEditMode('paint');
-    resetCanvasBackground();
   }
 
   updateCanvasBackground = (color) => {
@@ -54,7 +55,7 @@ class ToolbarOptions extends React.Component {
   };
 
   updateCanvasType = (_, options) => {
-    const { resetCanvasBackground, switchEditMode } = this.props;
+    const { switchEditMode } = this.props;
     const { selectedType } = this.state;
     switch (options.key) {
       case 'paint':
@@ -73,7 +74,7 @@ class ToolbarOptions extends React.Component {
         if (selectedType === 'particles') {
           unloadParticles();
         } else {
-          resetCanvasBackground();
+          this.resetCanvasBackground();
         }
         this.setState({
           selectedType: options.key,
@@ -171,7 +172,7 @@ class ToolbarOptions extends React.Component {
 
 const mapDispatch = dispatch => ({
   updateCanvasBackground: bindActionCreators(updateBackground, dispatch),
-  resetCanvasBackground: bindActionCreators(resetCanvasState, dispatch),
+  resetCanvas: bindActionCreators(resetCanvasState, dispatch),
   switchEditMode: bindActionCreators(switchMode, dispatch),
 });
 
