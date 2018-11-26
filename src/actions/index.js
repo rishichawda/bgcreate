@@ -14,6 +14,7 @@ export const updateBackground = color => (dispatch) => {
   if (isHexFormat(color)) {
     const rgb = hexToRgb(color);
     dispatch(setBackground(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`));
+  } else {
+    dispatch(setBackground(color));
   }
-  dispatch(setBackground(color));
 };
