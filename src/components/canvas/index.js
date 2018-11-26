@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./index.scss";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Dialog,
   DialogFooter,
   PrimaryButton,
   DefaultButton,
-  DialogType
-} from "office-ui-fabric-react";
+  DialogType,
+} from 'office-ui-fabric-react';
+import { generateImage } from '../../utils';
+import './index.scss';
 
 class Canvas extends Component {
   constructor(props) {
@@ -16,17 +17,8 @@ class Canvas extends Component {
   }
 
   saveImage = () => {
-    const { closeModal, canvasBg } = this.props;
-    let finalimage = document.createElement("canvas");
-    let finalimage_canvascontext = finalimage.getContext('2d');
-    finalimage.width = 2000;
-    finalimage.height = 2000;
-    finalimage_canvascontext.fillStyle = canvasBg;
-    finalimage_canvascontext.fillRect(0, 0, 2000, 2000);
-    let a = document.createElement('a');
-    a.href = finalimage.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-    a.download = 'bgGeneratorImage.jpg';
-    a.click();
+    const { closeModal, canvasBg, canvasMode } = this.props;
+    generateImage(canvasBg, canvasMode);
     closeModal();
   };
 
@@ -37,22 +29,22 @@ class Canvas extends Component {
         <canvas
           ref={this.canvasRef}
           className="particles-js-canvas-el"
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: '100%', width: '100%' }}
         />
         <Dialog
           hidden={!showModal}
           onDismiss={closeModal}
           dialogContentProps={{
             type: DialogType.normal,
-            title: "Download image",
+            title: 'Download image',
             subText:
-              "Download the image to your device? The image will be saved as bgGeneratorImage.jpg."
+              'Download the image to your device? The image will be saved as bgGeneratorImage.jpg.',
           }}
           modalProps={{
-            titleAriaId: "myLabelId",
-            subtitleAriaId: "mySubTextId",
+            titleAriaId: 'myLabelId',
+            subtitleAriaId: 'mySubTextId',
             isBlocking: false,
-            containerClassName: "ms-dialogMainOverride"
+            containerClassName: 'ms-dialogMainOverride',
           }}
         >
           {
@@ -68,11 +60,12 @@ class Canvas extends Component {
   }
 }
 
-const mapProps = ({ bgColor }) => ({
-  canvasBg: bgColor
+const mapProps = ({ bgColor, mode }) => ({
+  canvasBg: bgColor,
+  canvasMode: mode,
 });
 
 export default connect(
   mapProps,
-  null
+  null,
 )(Canvas);

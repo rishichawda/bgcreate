@@ -13,7 +13,9 @@ import {
 } from 'office-ui-fabric-react';
 import { bindActionCreators } from 'redux';
 import BackgroundColorPicker from './colorPicker';
-import { updateBackground, resetCanvasState } from './actions';
+import { updateBackground, resetCanvasState, switchMode } from './actions';
+import { loadParticles } from './utils';
+import { unloadParticles } from './utils/particles';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -40,29 +42,43 @@ class ToolbarOptions extends React.Component {
   }
 
   switchToPaint = () => {
-    const { resetCanvas } = this.props;
+    const { resetCanvasBackground, switchEditMode } = this.props;
     this.closeModal(null, 'paint');
-    resetCanvas();
+    switchEditMode('paint');
+    resetCanvasBackground();
   }
 
   updateCanvasBackground = (color) => {
-    const { updateBackground } = this.props;
-    updateBackground(color);
+    const { updateCanvasBackground } = this.props;
+    updateCanvasBackground(color);
   };
 
   updateCanvasType = (_, options) => {
-    const { resetCanvas } = this.props;
+    const { resetCanvasBackground, switchEditMode } = this.props;
+    const { selectedType } = this.state;
     switch (options.key) {
       case 'paint':
         this.setState({
           showModal: true,
         });
         break;
-      case 'no-effect':
+      case 'particles':
+        switchEditMode(options.key);
         this.setState({
           selectedType: options.key,
         });
-        resetCanvas();
+        loadParticles();
+        break;
+      case 'no-effect':
+        if (selectedType === 'particles') {
+          unloadParticles();
+        } else {
+          resetCanvasBackground();
+        }
+        this.setState({
+          selectedType: options.key,
+        });
+        switchEditMode(options.key);
         break;
       default:
         break;
@@ -118,7 +134,10 @@ class ToolbarOptions extends React.Component {
               selectedKey={selectedType}
               onChange={this.updateCanvasType}
             />
-            <p>You can currently choose between particles effect and a paint tool / canvas where you can draw using mouse.</p>
+            <p>
+              You can currently choose between particles
+              effect and a paint tool / canvas where you can draw using mouse.
+            </p>
           </div>
         ) : null}
         <Dialog
@@ -151,8 +170,9 @@ class ToolbarOptions extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  updateBackground: bindActionCreators(updateBackground, dispatch),
-  resetCanvas: bindActionCreators(resetCanvasState, dispatch),
+  updateCanvasBackground: bindActionCreators(updateBackground, dispatch),
+  resetCanvasBackground: bindActionCreators(resetCanvasState, dispatch),
+  switchEditMode: bindActionCreators(switchMode, dispatch),
 });
 
 export default connect(
