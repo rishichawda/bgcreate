@@ -15,6 +15,7 @@ import { bindActionCreators } from 'redux';
 import BackgroundColorPicker from './colorPicker';
 import { updateBackground, resetCanvasState, switchMode } from './actions';
 import { loadParticles } from './utils';
+import { unloadParticles } from './utils/particles';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class ToolbarOptions extends React.Component {
 
   updateCanvasType = (_, options) => {
     const { resetCanvasBackground, switchEditMode } = this.props;
+    const { selectedType } = this.state;
     switch (options.key) {
       case 'paint':
         this.setState({
@@ -62,9 +64,15 @@ class ToolbarOptions extends React.Component {
         break;
       case 'particles':
         switchEditMode(options.key);
+        this.setState({
+          selectedType: options.key,
+        });
         loadParticles();
         break;
       case 'no-effect':
+        if (selectedType === 'particles') {
+          unloadParticles();
+        }
         this.setState({
           selectedType: options.key,
         });
