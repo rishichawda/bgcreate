@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
-  CommandBarButton, AnimationClassNames, Dropdown,
+  CommandBarButton, AnimationClassNames, Dropdown, Slider,
 } from 'office-ui-fabric-react';
-import { updateParticlesShape } from './utils/particles';
+import { updateParticlesShape, updateParticlesDensity } from './utils/particles';
 
 class ParticlesOptions extends Component {
   constructor(props) {
@@ -11,6 +11,10 @@ class ParticlesOptions extends Component {
       collapse: true,
       selected: ['circle'],
     };
+  }
+
+  changeDensity = (value) => {
+    updateParticlesDensity(value);
   }
 
   toggleCollapse = () => {
@@ -50,7 +54,7 @@ class ParticlesOptions extends Component {
           <div className={`${AnimationClassNames.scaleUpIn100} particles-config-collapse`}>
             <Dropdown
               placeholder="Select particle types"
-              label="Particle types:"
+              label="Particle types :"
               id="particles-type-dropdown"
               defaultSelectedKeys={selected}
               onChange={this.onChangeTypes}
@@ -63,6 +67,21 @@ class ParticlesOptions extends Component {
                 { key: 'star', text: 'Star' },
               ]}
             />
+            <p>You can either select any one type of particle or if you want, multiple types too!</p>
+            <hr />
+            <Slider
+              label="Density :"
+              min={1100}
+              max={200}
+              step={-50}
+              defaultValue={800}
+              onChange={this.changeDensity}
+              showValue={false}
+              disabled={selected.length >= 2}
+              className="density-slider"
+            />
+            <p>Change the density of particles on the canvas.</p>
+            <hr />
           </div>
         ) : null}
       </div>

@@ -28,3 +28,8 @@ export function updateParticlesShape(shape) {
     }
   }
 }
+
+export function updateParticlesDensity(value) {
+  pJSDom[0].pJS.particles.number.density.value_area = value;
+  pJSDom[0].pJS.fn.particlesRefresh();
+}
