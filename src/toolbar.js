@@ -10,6 +10,7 @@ class Toolbar extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const { showPanel, closePanel, resetCanvas } = this.props;
     return (
@@ -30,7 +31,7 @@ class Toolbar extends React.Component {
           <ToolbarOptions />
         </Panel>
       </div>
-    )
+    );
   }
 }
 

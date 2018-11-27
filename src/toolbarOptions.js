@@ -16,6 +16,7 @@ import BackgroundColorPicker from './colorPicker';
 import { updateBackground, resetCanvasState, switchMode } from './actions';
 import { loadParticles } from './utils';
 import { unloadParticles } from './utils/particles';
+import ParticlesOptions from './particlesOptions';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -141,6 +142,7 @@ class ToolbarOptions extends React.Component {
             </p>
           </div>
         ) : null}
+        { selectedType === 'particles' ? <ParticlesOptions /> : null }
         <Dialog
           hidden={!showModal}
           onDismiss={this.closeModal}
