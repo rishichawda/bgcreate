@@ -16,6 +16,7 @@ import BackgroundColorPicker from './colorPicker';
 import { updateBackground, resetCanvasState, switchMode } from './actions';
 import { loadParticles } from './utils';
 import { unloadParticles } from './utils/particles';
+import ParticlesOptions from './particlesOptions';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -141,6 +142,7 @@ class ToolbarOptions extends React.Component {
             </p>
           </div>
         ) : null}
+        { selectedType === 'particles' ? <ParticlesOptions /> : null }
         <Dialog
           hidden={!showModal}
           onDismiss={this.closeModal}
@@ -151,9 +153,9 @@ class ToolbarOptions extends React.Component {
               'Switching to paint mode will reset the canvas and you might lose any changes that were made. If you want the current changes, first please download the image from the download button in the menu bar.',
           }}
           modalProps={{
-            titleAriaId: 'myLabelId',
-            subtitleAriaId: 'mySubTextId',
-            isBlocking: false,
+            titleAriaId: 'paint-confirmation-dialog-title',
+            subtitleAriaId: 'paint-confirmation-dialog-text',
+            isBlocking: true,
             containerClassName: 'ms-dialogMainOverride',
           }}
         >
