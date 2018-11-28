@@ -21,9 +21,9 @@ class MenuBar extends Component {
   }
 
   createNew = (shouldSave) => {
-    const { generateNewCanvas } = this.props;
+    const { generateNewCanvas, canvasBg, canvasMode } = this.props;
     if (shouldSave) {
-      generateImage();
+      generateImage(canvasBg, canvasMode);
     }
     this.closeDialog();
     generateNewCanvas();
@@ -162,8 +162,14 @@ class MenuBar extends Component {
   }
 }
 
+const mapProps = ({ bgColor, mode }) => ({
+  canvasBg: bgColor,
+  canvasMode: mode,
+});
+
+
 const mapDispatch = dispatch => ({
   generateNewCanvas: bindActionCreators(resetCanvasState, dispatch),
 });
 
-export default connect(null, mapDispatch)(MenuBar);
+export default connect(mapProps, mapDispatch)(MenuBar);
