@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
+import {
+  Dialog, DialogFooter, PrimaryButton, DefaultButton, DialogType,
+} from 'office-ui-fabric-react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import About from './about';
-import { Dialog, DialogFooter, PrimaryButton, DefaultButton, DialogType } from 'office-ui-fabric-react';
+import { generateImage } from './utils';
+import { resetCanvasState } from './actions';
 
 class MenuBar extends Component {
   constructor(props) {
@@ -10,6 +16,17 @@ class MenuBar extends Component {
       showModal: false,
       hideDialog: true,
     };
+    this.createWithSave = this.createNew.bind(this, true);
+    this.createWithoutSave = this.createNew.bind(this, false);
+  }
+
+  createNew = (shouldSave) => {
+    const { generateNewCanvas } = this.props;
+    if (shouldSave) {
+      generateImage();
+    }
+    this.closeDialog();
+    generateNewCanvas();
   }
 
   // Data for CommandBar
@@ -130,13 +147,13 @@ class MenuBar extends Component {
             titleAriaId: 'myLabelId',
             subtitleAriaId: 'mySubTextId',
             isBlocking: false,
-            containerClassName: 'ms-dialogMainOverride',
+            containerClassName: 'ms-dialogMainOverride new-file-modal',
           }}
         >
           {null /** You can also include null values as the result of conditionals */}
           <DialogFooter>
-            <PrimaryButton onClick={this.closeDialog} text="Yes, save and create new." />
-            <DefaultButton onClick={this.closeDialog} style={{ backgroundColor: '#cf0000' }} text="Continue without saving." />
+            <PrimaryButton onClick={this.createWithSave} text="Yes, save and create new." />
+            <PrimaryButton onClick={this.createWithoutSave} style={{ backgroundColor: '#f06060' }} text="Continue without saving." />
             <DefaultButton onClick={this.closeDialog} text="Cancel" />
           </DialogFooter>
         </Dialog>
@@ -145,4 +162,8 @@ class MenuBar extends Component {
   }
 }
 
-export default MenuBar;
+const mapDispatch = dispatch => ({
+  generateNewCanvas: bindActionCreators(resetCanvasState, dispatch),
+});
+
+export default connect(null, mapDispatch)(MenuBar);
