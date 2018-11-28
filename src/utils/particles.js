@@ -72,5 +72,5 @@ export function toggleOpacityAnimation(value) {
       },
     };
   }
-  pJSDom[0].pJS.fn.particlesCreate();
+  pJSDom[0].pJS.fn.particlesRefresh();
 }
