@@ -107,3 +107,13 @@ div[data-toolbar-item=bg-color-display] {
     min-width: -moz-fit-content;
     min-width: -webkit-fit-content;
 }
+
+.particles-color-picker {
+    .ms-ColorPicker-panel {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    &+*[data-toolbar-item=bg-color-display] {
+        width: 100%;
+    }
+}

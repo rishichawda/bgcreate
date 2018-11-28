@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {
-  CommandBarButton, AnimationClassNames, Dropdown, Slider,
+  CommandBarButton, AnimationClassNames, Dropdown, Slider, DefaultButton,
 } from 'office-ui-fabric-react';
-import { updateParticlesShape, updateParticlesDensity } from './utils/particles';
+import { updateParticlesShape, updateParticlesDensity, updateParticlesColor } from './utils/particles';
+import ColorPicker from './colorPicker';
 
 class ParticlesOptions extends Component {
   constructor(props) {
@@ -40,6 +41,11 @@ class ParticlesOptions extends Component {
       });
       updateParticlesShape(selected);
     }
+  }
+
+  updateParticlesColor = (color) => {
+    const { selected } = this.state;
+    updateParticlesColor(color, selected);
   }
 
   render() {
@@ -84,6 +90,15 @@ class ParticlesOptions extends Component {
               className="density-slider"
             />
             <p>Change the density of particles on the canvas.</p>
+            <hr />
+            <p style={{ marginBottom: 0 }}>Select particle color :</p>
+            <ColorPicker className="particles-color-picker" onUpdate={this.updateParticlesColor}>
+              <DefaultButton
+                data-automation-id="particles-color"
+                text="Apply"
+                iconProps={{ iconName: 'BucketColor' }}
+              />
+            </ColorPicker>
             <hr />
           </div>
         ) : null}
