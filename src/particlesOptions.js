@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
-  CommandBarButton, AnimationClassNames, Dropdown, Slider, DefaultButton,
+  CommandBarButton, AnimationClassNames, Dropdown, Slider, DefaultButton, Checkbox,
 } from 'office-ui-fabric-react';
-import { updateParticlesShape, updateParticlesDensity, updateParticlesColor } from './utils/particles';
+import { updateParticlesShape, updateParticlesDensity, updateParticlesColor, toggleOpacityAnimation } from './utils/particles';
 import ColorPicker from './colorPicker';
 
 class ParticlesOptions extends Component {
@@ -41,6 +41,10 @@ class ParticlesOptions extends Component {
       });
       updateParticlesShape(selected);
     }
+  }
+
+  toggleOpacity = (_, value) => {
+    toggleOpacityAnimation(value);
   }
 
   updateParticlesColor = (color) => {
@@ -100,6 +104,7 @@ class ParticlesOptions extends Component {
               />
             </ColorPicker>
             <hr />
+            <Checkbox label="Animate particle opacity" onChange={this.toggleOpacity} />
           </div>
         ) : null}
       </div>
