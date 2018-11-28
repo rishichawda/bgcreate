@@ -40,3 +40,10 @@ export function updateParticlesColor(color, shapes) {
   pJSDom[0].pJS.particles.color.value = color;
   updateParticlesShape(shapes);
 }
+
+export function toggleParticlesMovement(value) {
+  pJSDom[0].pJS.particles.move.enable = value;
+  if (value) {
+    pJSDom[0].pJS.fn.particlesRefresh();
+  }
+}
