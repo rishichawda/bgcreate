@@ -9,6 +9,7 @@ import About from './about';
 import { generateImage } from './utils';
 import { resetCanvasState } from './actions';
 import { toggleParticlesMovement } from './utils/particles';
+import { PARTICLES_MODE } from './shared/constants';
 
 class MenuBar extends Component {
   constructor(props) {
@@ -83,7 +84,7 @@ class MenuBar extends Component {
         onClick: () => showModal(),
       },
     ];
-    if (canvasMode === 'particles') {
+    if (canvasMode === PARTICLES_MODE) {
       options.push({
         key: 'pause-particles',
         name: particlesPaused ? 'Play particles' : 'Pause particles',

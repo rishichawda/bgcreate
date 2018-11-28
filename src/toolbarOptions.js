@@ -17,6 +17,7 @@ import { updateBackground, resetCanvasState, switchMode } from './actions';
 import { loadParticles } from './utils';
 import { unloadParticles } from './utils/particles';
 import ParticlesOptions from './particlesOptions';
+import { PAINT_MODE, PARTICLES_MODE, NORMAL_MODE } from './shared/constants';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class ToolbarOptions extends React.Component {
       collapseOne: false,
       collapseTwo: true,
       showModal: false,
-      selectedType: 'no-effect',
+      selectedType: NORMAL_MODE,
     };
     this.resetCanvasBackground = this.updateCanvasBackground.bind(this, '#fff');
   }
@@ -45,9 +46,9 @@ class ToolbarOptions extends React.Component {
 
   switchToPaint = () => {
     const { switchEditMode, resetCanvas } = this.props;
-    this.closeModal(null, 'paint');
+    this.closeModal(null, PAINT_MODE);
     resetCanvas();
-    switchEditMode('paint');
+    switchEditMode(PAINT_MODE);
   }
 
   updateCanvasBackground = (color) => {
@@ -59,20 +60,20 @@ class ToolbarOptions extends React.Component {
     const { switchEditMode } = this.props;
     const { selectedType } = this.state;
     switch (options.key) {
-      case 'paint':
+      case PAINT_MODE:
         this.setState({
           showModal: true,
         });
         break;
-      case 'particles':
+      case PARTICLES_MODE:
         switchEditMode(options.key);
         this.setState({
           selectedType: options.key,
         });
         loadParticles();
         break;
-      case 'no-effect':
-        if (selectedType === 'particles') {
+      case NORMAL_MODE:
+        if (selectedType === PARTICLES_MODE) {
           unloadParticles();
         } else {
           this.resetCanvasBackground();
@@ -127,11 +128,11 @@ class ToolbarOptions extends React.Component {
               id="effects-dropdown"
               ariaLabel="Effects dropdown"
               options={[
-                { key: 'no-effect', text: 'None', title: 'No effect' },
+                { key: NORMAL_MODE, text: 'None', title: 'No effect' },
                 { key: 'divider_0', text: '-', itemType: DropdownMenuItemType.Divider },
-                { key: 'particles', text: 'Particles' },
+                { key: PARTICLES_MODE, text: PARTICLES_MODE },
                 { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
-                { key: 'paint', text: 'Paint' },
+                { key: PAINT_MODE, text: PAINT_MODE },
               ]}
               selectedKey={selectedType}
               onChange={this.updateCanvasType}
@@ -142,7 +143,7 @@ class ToolbarOptions extends React.Component {
             </p>
           </div>
         ) : null}
-        { selectedType === 'particles' ? <ParticlesOptions /> : null }
+        { selectedType === PARTICLES_MODE ? <ParticlesOptions /> : null }
         <Dialog
           hidden={!showModal}
           onDismiss={this.closeModal}
