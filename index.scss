@@ -104,4 +104,6 @@ div[data-toolbar-item=bg-color-display] {
 
 .new-file-modal {
     min-width: fit-content;
+    min-width: -moz-fit-content;
+    min-width: -webkit-fit-content;
 }
