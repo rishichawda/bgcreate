@@ -31,6 +31,17 @@ class ToolbarOptions extends React.Component {
     this.resetCanvasBackground = this.updateCanvasBackground.bind(this, '#fff');
   }
 
+  componentDidUpdate() {
+    const { selectedType } = this.state;
+    const { canvasMode } = this.props;
+    if (selectedType !== canvasMode) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        selectedType: canvasMode,
+      });
+    }
+  }
+
   toggleCollapse = (identifier) => {
     this.setState(prevState => ({
       [`${identifier}`]: !prevState[identifier],
@@ -179,7 +190,11 @@ const mapDispatch = dispatch => ({
   switchEditMode: bindActionCreators(switchMode, dispatch),
 });
 
+const mapProps = ({ mode }) => ({
+  canvasMode: mode,
+});
+
 export default connect(
-  null,
+  mapProps,
   mapDispatch,
 )(ToolbarOptions);

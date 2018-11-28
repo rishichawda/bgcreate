@@ -1,7 +1,7 @@
 import { isHexFormat, hexToRgb } from '../utils';
 import { BG_UPDATE, MODE_UPDATE } from '../shared/actionTypes';
 import { unloadParticles } from '../utils/particles';
-import { PARTICLES_MODE } from '../shared/constants';
+import { PARTICLES_MODE, NORMAL_MODE } from '../shared/constants';
 
 const setBackground = payload => ({
   type: BG_UPDATE,
@@ -19,6 +19,7 @@ export const resetCanvasState = () => (dispatch, getState) => {
     unloadParticles();
   }
   dispatch(setBackground('#fff'));
+  dispatch(updateMode(NORMAL_MODE));
 };
 
 export const updateBackground = color => (dispatch) => {
