@@ -26,17 +26,20 @@ class ParticlesOptions extends Component {
   onChangeTypes = (_, options) => {
     let { selected } = this.state;
     if (selected.indexOf(options.key) !== -1) {
-      selected = selected.filter(val => val !== options.key);
-      this.setState({
-        selected,
-      });
+      if (selected.length !== 1) {
+        selected = selected.filter(val => val !== options.key);
+        this.setState({
+          selected,
+        });
+        updateParticlesShape(selected);
+      }
     } else {
       selected = [...selected, options.key];
       this.setState({
         selected,
       });
+      updateParticlesShape(selected);
     }
-    updateParticlesShape(selected);
   }
 
   render() {
@@ -56,7 +59,7 @@ class ParticlesOptions extends Component {
               placeholder="Select particle types"
               label="Particle types :"
               id="particles-type-dropdown"
-              defaultSelectedKeys={selected}
+              selectedKeys={selected}
               onChange={this.onChangeTypes}
               multiSelect
               options={[
