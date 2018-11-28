@@ -10,7 +10,9 @@ export function loadParticles(callback) {
 
 export function unloadParticles() {
   const canvas = document.getElementById('particles-js');
-  canvas.removeChild(document.getElementsByClassName('particles-js-canvas-el')[0]);
+  canvas.removeChild(
+    document.getElementsByClassName('particles-js-canvas-el')[0],
+  );
   const newcanvas = document.createElement('canvas');
   newcanvas.classList += 'particles-js-canvas-el';
   newcanvas.style.height = '100%';
@@ -32,4 +34,9 @@ export function updateParticlesShape(shape) {
 export function updateParticlesDensity(value) {
   pJSDom[0].pJS.particles.number.density.value_area = value;
   pJSDom[0].pJS.fn.particlesRefresh();
+}
+
+export function updateParticlesColor(color, shapes) {
+  pJSDom[0].pJS.particles.color.value = color;
+  updateParticlesShape(shapes);
 }
