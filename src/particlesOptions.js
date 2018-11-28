@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   CommandBarButton, AnimationClassNames, Dropdown, Slider, DefaultButton, Checkbox,
 } from 'office-ui-fabric-react';
-import { updateParticlesShape, updateParticlesDensity, updateParticlesColor, toggleOpacityAnimation } from './utils/particles';
+import {
+  updateParticlesShape, updateParticlesDensity, updateParticlesColor, toggleOpacityAnimation,
+} from './utils/particles';
 import ColorPicker from './colorPicker';
 
 class ParticlesOptions extends Component {
