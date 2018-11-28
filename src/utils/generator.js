@@ -1,3 +1,5 @@
+import { PARTICLES_MODE } from '../shared/constants';
+
 const generateDownloadLink = (image) => {
   const a = document.createElement('a');
   a.href = image
@@ -35,7 +37,7 @@ export default (canvasBg, mode) => {
   finalimage.height = height;
   finalimageCanvascontext.fillStyle = canvasBg;
   finalimageCanvascontext.fillRect(0, 0, width, height);
-  if (mode === 'particles') {
+  if (mode === PARTICLES_MODE) {
     finalimageCanvascontext.drawImage(canvas, 0, 0);
   }
   generateDownloadLink(finalimage);

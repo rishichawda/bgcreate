@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import About from './about';
 import { generateImage } from './utils';
 import { resetCanvasState } from './actions';
+import { toggleParticlesMovement } from './utils/particles';
+import { PARTICLES_MODE } from './shared/constants';
 
 class MenuBar extends Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class MenuBar extends Component {
     this.state = {
       showModal: false,
       hideDialog: true,
+      particlesPaused: false,
     };
     this.createWithSave = this.createNew.bind(this, true);
     this.createWithoutSave = this.createNew.bind(this, false);
@@ -31,8 +34,9 @@ class MenuBar extends Component {
 
   // Data for CommandBar
   getItems = () => {
-    const { showToolbar, showModal } = this.props;
-    return [
+    const { showToolbar, showModal, canvasMode } = this.props;
+    const { particlesPaused } = this.state;
+    const options = [
       {
         key: 'newItem',
         name: 'New',
@@ -80,6 +84,17 @@ class MenuBar extends Component {
         onClick: () => showModal(),
       },
     ];
+    if (canvasMode === PARTICLES_MODE) {
+      options.push({
+        key: 'pause-particles',
+        name: particlesPaused ? 'Play particles' : 'Pause particles',
+        iconProps: {
+          iconName: particlesPaused ? 'Play' : 'CirclePause',
+        },
+        onClick: this.toggleParticlesMovement,
+      });
+    }
+    return options;
   }
 
   getOverlflowItems = () => [
@@ -121,6 +136,13 @@ class MenuBar extends Component {
   showDialog = () => {
     this.setState({
       hideDialog: false,
+    });
+  }
+
+  toggleParticlesMovement = () => {
+    this.setState((prevState) => {
+      toggleParticlesMovement(prevState.particlesPaused);
+      return { particlesPaused: !prevState.particlesPaused };
     });
   }
 
