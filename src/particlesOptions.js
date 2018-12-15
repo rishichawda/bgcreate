@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import {
   CommandBarButton, AnimationClassNames, Dropdown, Slider, DefaultButton, Checkbox,
 } from 'office-ui-fabric-react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
-  updateParticlesShape, updateParticlesDensity, updateParticlesColor, toggleOpacityAnimation,
+  updateParticlesShape, updateParticlesDensity, toggleOpacityAnimation,
 } from './utils/particles';
 import ColorPicker from './colorPicker';
+import { updateParticlesColor } from './actions';
 
 class ParticlesOptions extends Component {
   constructor(props) {
@@ -50,8 +53,9 @@ class ParticlesOptions extends Component {
   }
 
   updateParticlesColor = (color) => {
+    const { changeParticlesColor } = this.props;
     const { selected } = this.state;
-    updateParticlesColor(color, selected);
+    changeParticlesColor(color, selected);
   }
 
   render() {
@@ -114,4 +118,8 @@ class ParticlesOptions extends Component {
   }
 }
 
-export default ParticlesOptions;
+const mapDispatchToProps = dispatch => ({
+  changeParticlesColor: bindActionCreators(updateParticlesColor, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(ParticlesOptions);

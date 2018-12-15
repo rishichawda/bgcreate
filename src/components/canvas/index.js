@@ -7,13 +7,12 @@ import {
   DefaultButton,
   DialogType,
 } from 'office-ui-fabric-react';
+import Particles from 'react-particles-js';
 import { generateImage } from '../../utils';
 import './index.scss';
-import Particles from 'react-particles-js';
 import { PARTICLES_MODE } from '../../shared/constants';
 
 class Canvas extends Component {
-
   saveImage = () => {
     const { closeModal, canvasBg, canvasMode } = this.props;
     generateImage(canvasBg, canvasMode);
@@ -21,10 +20,12 @@ class Canvas extends Component {
   };
 
   render() {
-    const { canvasBg, showModal, closeModal, canvasMode } = this.props;
+    const {
+      canvasBg, showModal, closeModal, canvasMode, canvasConfig,
+    } = this.props;
     return (
       <div id="particles-js" style={{ backgroundColor: canvasBg }}>
-        { canvasMode === PARTICLES_MODE && <Particles canvasClassName="particles-js-canvas-el" height="100%" width="100%" /> }
+        { canvasMode === PARTICLES_MODE && <Particles params={canvasConfig} canvasClassName="particles-js-canvas-el" height="100%" width="100%" /> }
         <Dialog
           hidden={!showModal}
           onDismiss={closeModal}
@@ -54,9 +55,10 @@ class Canvas extends Component {
   }
 }
 
-const mapProps = ({ bgColor, mode }) => ({
+const mapProps = ({ bgColor, mode, particlesOptions }) => ({
   canvasBg: bgColor,
   canvasMode: mode,
+  canvasConfig: particlesOptions,
 });
 
 export default connect(
