@@ -9,12 +9,10 @@ import {
 } from 'office-ui-fabric-react';
 import { generateImage } from '../../utils';
 import './index.scss';
+import Particles from 'react-particles-js';
+import { PARTICLES_MODE } from '../../shared/constants';
 
 class Canvas extends Component {
-  constructor(props) {
-    super(props);
-    this.canvasRef = React.createRef();
-  }
 
   saveImage = () => {
     const { closeModal, canvasBg, canvasMode } = this.props;
@@ -23,14 +21,10 @@ class Canvas extends Component {
   };
 
   render() {
-    const { canvasBg, showModal, closeModal } = this.props;
+    const { canvasBg, showModal, closeModal, canvasMode } = this.props;
     return (
       <div id="particles-js" style={{ backgroundColor: canvasBg }}>
-        <canvas
-          ref={this.canvasRef}
-          className="particles-js-canvas-el"
-          style={{ height: '100%', width: '100%' }}
-        />
+        { canvasMode === PARTICLES_MODE && <Particles canvasClassName="particles-js-canvas-el" height="100%" width="100%" /> }
         <Dialog
           hidden={!showModal}
           onDismiss={closeModal}
