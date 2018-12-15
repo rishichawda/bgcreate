@@ -18,11 +18,7 @@ const updateParticlesCol = payload => ({
   payload,
 });
 
-export const resetCanvasState = () => (dispatch, getState) => {
-  const { mode } = getState();
-  if (mode === PARTICLES_MODE) {
-    unloadParticles();
-  }
+export const resetCanvasState = () => (dispatch) => {
   dispatch(setBackground('#fff'));
   dispatch(updateMode(NORMAL_MODE));
 };
