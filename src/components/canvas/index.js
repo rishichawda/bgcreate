@@ -25,7 +25,7 @@ class Canvas extends Component {
     } = this.props;
     return (
       <div id="particles-js" style={{ backgroundColor: canvasBg }}>
-        { canvasMode === PARTICLES_MODE && <Particles params={canvasConfig} canvasClassName="particles-js-canvas-el" height="100%" width="100%" /> }
+        { canvasMode === PARTICLES_MODE && <Particles params={canvasConfig} canvasClassName="particles-js-canvas-el" height="100vh" width="100vw" /> }
         <Dialog
           hidden={!showModal}
           onDismiss={closeModal}

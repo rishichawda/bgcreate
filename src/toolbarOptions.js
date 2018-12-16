@@ -81,7 +81,6 @@ class ToolbarOptions extends React.Component {
         this.setState({
           selectedType: options.key,
         });
-        loadParticles();
         break;
       case NORMAL_MODE:
         if (selectedType === PARTICLES_MODE) {

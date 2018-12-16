@@ -37,5 +37,10 @@ export const switchMode = mode => (dispatch) => {
 };
 
 export const updateParticlesColor = color => (dispatch) => {
-  dispatch(updateParticlesCol(color));
+  if (isHexFormat(color)) {
+    const rgb = hexToRgb(color);
+    dispatch(updateParticlesCol(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`));
+  } else {
+    dispatch(updateParticlesCol(color));
+  }
 };
