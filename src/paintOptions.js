@@ -65,7 +65,7 @@ class PaintOptions extends Component {
 
   render() {
     const { collapse } = this.state;
-    const { pencilWidth } = this.props;
+    const { pencilWidth, pencilColor } = this.props;
     const paintConfigProps = {
       'data-toolbar-option': 'paint-config',
       iconProps: { iconName: collapse ? 'ChevronDown' : 'ChevronUp' },
@@ -96,7 +96,7 @@ class PaintOptions extends Component {
               decrementButtonAriaLabel="Decrease value by 1"
             />
             <p style={{ marginBottom: 0 }}>Select pencil color :</p>
-            <ColorPicker className="particles-color-picker" onUpdate={this.updatePencilColor}>
+            <ColorPicker color={pencilColor} className="particles-color-picker" onUpdate={this.updatePencilColor}>
               <DefaultButton
                 data-automation-id="particles-color"
                 text="Apply"
@@ -116,8 +116,9 @@ const mapDispatch = dispatch => ({
   updatePencilWidth: bindActionCreators(updateLineWidth, dispatch),
 });
 
-const mapState = ({ paint: { lineWidth } }) => ({
+const mapState = ({ paint: { lineWidth, brushCol } }) => ({
   pencilWidth: lineWidth,
+  pencilColor: brushCol,
 });
 
 export default connect(mapState, mapDispatch)(PaintOptions);
