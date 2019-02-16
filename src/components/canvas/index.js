@@ -9,6 +9,8 @@ import {
 } from 'office-ui-fabric-react';
 import { generateImage } from '../../utils';
 import './index.scss';
+import { PAINT_MODE } from '../../shared/constants';
+import PaintCanvas from '../paint-canvas';
 
 class Canvas extends Component {
   constructor(props) {
@@ -23,8 +25,16 @@ class Canvas extends Component {
   };
 
   render() {
-    const { canvasBg, showModal, closeModal } = this.props;
-    return (
+    const {
+      canvasBg, showModal, closeModal, canvasMode,
+    } = this.props;
+    const props = {
+      brushCol: '#000',
+      className: 'react-paint',
+      height: '100%',
+      width: '100%',
+    };
+    return canvasMode === PAINT_MODE ? <PaintCanvas {...props} /> : (
       <div id="particles-js" style={{ backgroundColor: canvasBg }}>
         <canvas
           ref={this.canvasRef}
