@@ -26,13 +26,11 @@ export default class PaintCanvas extends Component {
     super(props);
     this.state = {
       mouseDown: false,
-      // mouseLoc: [0, 0],
     };
   }
 
   componentDidMount() {
     const { brushCol, lineWidth } = this.props;
-
     const context = this.canvas.getContext('2d');
     context.canvas.width = document.getElementById('particles-js').getBoundingClientRect().width;
     context.canvas.height = document.getElementById('particles-js').getBoundingClientRect().width;
@@ -59,10 +57,6 @@ export default class PaintCanvas extends Component {
     const { mouseDown } = this.state;
     if (!mouseDown) this.setState({ mouseDown: true });
     const context = this.canvas.getContext('2d');
-    // this.setState({
-    //   mouseLoc: [e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY],
-    // });
-
     context.moveTo(
       (e.pageX || (e.touches && e.touches[0].pageX)) - this.bb.left,
       (e.pageY || (e.touches && e.touches[0].pageY)) - this.bb.top,
@@ -85,7 +79,6 @@ export default class PaintCanvas extends Component {
           ((e.pageX || (e.touches && e.touches[0].pageX)) - this.bb.left),
           ((e.pageY || (e.touches && e.touches[0].pageY)) - this.bb.top),
         );
-
         context.stroke();
       }
     }
@@ -106,19 +99,15 @@ export default class PaintCanvas extends Component {
           // eslint-disable-next-line no-return-assign
           ref={c => (this.canvas = c)}
           className={`${className}__canvas`}
-
           onClick={onDraw}
           height={height}
           width={width}
-
           style={style}
-
           onMouseDown={this.mouseDown}
           onTouchStart={this.mouseDown}
-
           onMouseUp={this.mouseUp}
           onTouchEnd={this.mouseUp}
-
+          onMouseLeave={this.mouseUp}
           onMouseMove={this.mouseMove}
           onTouchMove={this.mouseMove}
         />
