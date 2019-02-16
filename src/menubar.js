@@ -172,9 +172,10 @@ class MenuBar extends Component {
             isBlocking: false,
             containerClassName: 'ms-dialogMainOverride new-file-modal',
           }}
+          isBlocking
         >
           {null /** You can also include null values as the result of conditionals */}
-          <DialogFooter>
+          <DialogFooter className="new-file-modal-footer">
             <PrimaryButton onClick={this.createWithSave} text="Yes, save and create new." />
             <PrimaryButton onClick={this.createWithoutSave} style={{ backgroundColor: '#f06060' }} text="Continue without saving." />
             <DefaultButton onClick={this.closeDialog} text="Cancel" />
