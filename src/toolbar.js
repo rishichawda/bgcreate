@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
@@ -82,6 +83,12 @@ class Toolbar extends React.Component {
 const mapDispatch = dispatch => ({
   resetCanvas: bindActionCreators(resetCanvasState, dispatch),
 });
+
+Toolbar.propTypes = {
+  resetCanvas: PropTypes.func.isRequired,
+  showPanel: PropTypes.bool.isRequired,
+  closePanel: PropTypes.func.isRequired,
+};
 
 export default connect(
   null,
