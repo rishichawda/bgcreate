@@ -26,11 +26,11 @@ class Canvas extends Component {
 
   render() {
     const {
-      canvasBg, showModal, closeModal, canvasMode,
+      canvasBg, showModal, closeModal, canvasMode, paintConfig,
     } = this.props;
     const props = {
-      brushCol: '#000',
-      className: 'react-paint',
+      brushCol: paintConfig.brushCol,
+      lineWidth: paintConfig.lineWidth,
       height: '100%',
       width: '100%',
     };
@@ -72,9 +72,10 @@ class Canvas extends Component {
   }
 }
 
-const mapProps = ({ bgColor, mode }) => ({
+const mapProps = ({ bgColor, mode, paint }) => ({
   canvasBg: bgColor,
   canvasMode: mode,
+  paintConfig: paint,
 });
 
 export default connect(

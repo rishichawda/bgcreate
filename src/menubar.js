@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import {
   Dialog, DialogFooter, PrimaryButton, DefaultButton, DialogType,
@@ -193,5 +194,13 @@ const mapProps = ({ bgColor, mode }) => ({
 const mapDispatch = dispatch => ({
   generateNewCanvas: bindActionCreators(resetCanvasState, dispatch),
 });
+
+MenuBar.propTypes = {
+  canvasBg: PropTypes.string.isRequired,
+  canvasMode: PropTypes.string.isRequired,
+  showModal: PropTypes.func.isRequired,
+  showToolbar: PropTypes.func.isRequired,
+  generateNewCanvas: PropTypes.func.isRequired,
+};
 
 export default connect(mapProps, mapDispatch)(MenuBar);

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { ColorPicker } from 'office-ui-fabric-react/lib/ColorPicker';
 
 
@@ -33,5 +34,15 @@ class BackgroundColorPicker extends React.Component {
       );
     }
 }
+
+BackgroundColorPicker.propTypes = {
+  children: PropTypes.node.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  className: PropTypes.string,
+};
+
+BackgroundColorPicker.defaultProps = {
+  className: '',
+};
 
 export default BackgroundColorPicker;

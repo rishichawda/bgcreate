@@ -56,7 +56,10 @@ body {
     padding: 0;
 }
 
-*[data-toolbar-option=bg-selector], *[data-toolbar-option=effect-selector], *[data-toolbar-option=particles-config] {
+*[data-toolbar-option=bg-selector],
+*[data-toolbar-option=effect-selector],
+*[data-toolbar-option=particles-config],
+*[data-toolbar-option=paint-config] {
     padding: 1em;
     width: 100%;
 }
@@ -93,12 +96,16 @@ div[data-toolbar-item=bg-color-display] {
     z-index: -1;
 }
 
-#effects-dropdown, #particles-type-dropdown, .density-slider {
+#effects-dropdown,
+#particles-type-dropdown,
+.density-slider {
     width: 88%;
     margin: auto;
 }
 
-.collapseTwoContent, .particles-config-collapse {
+.collapseTwoContent,
+.particles-config-collapse,
+.paint-config-collapse {
     padding: 1em;
 }
 

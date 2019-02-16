@@ -82,7 +82,10 @@ class ParticlesOptions extends Component {
                 { key: 'star', text: 'Star' },
               ]}
             />
-            <p>You can either select any one type of particle or if you want, multiple types too!</p>
+            <p>
+              {`You can either select any one type of 
+              particle or if you want, multiple types too!`}
+            </p>
             <hr />
             <Slider
               label="Density :"

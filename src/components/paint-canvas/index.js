@@ -55,13 +55,18 @@ export default class PaintCanvas extends Component {
     const { mouseDown } = this.state;
     if (!mouseDown) this.setState({ mouseDown: true });
     const context = this.canvas.getContext('2d');
+    context.beginPath();
     context.moveTo(
       (e.pageX || (e.touches && e.touches[0].pageX)) - this.bb.left,
       (e.pageY || (e.touches && e.touches[0].pageY)) - this.bb.top,
     );
   }
 
-  mouseUp = () => (this.setState({ mouseDown: false }));
+  mouseUp = () => {
+    this.setState({ mouseDown: false });
+    const context = this.canvas.getContext('2d');
+    context.closePath();
+  };
 
   mouseMove = (e) => {
     const context = this.canvas.getContext('2d');

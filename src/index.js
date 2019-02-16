@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import MenuBar from './menubar';
 import Toolbar from './toolbar';
 import store from './store';
+// eslint-disable-next-line import/extensions
 import Canvas from './components/canvas/index.js';
 
 class App extends React.Component {
