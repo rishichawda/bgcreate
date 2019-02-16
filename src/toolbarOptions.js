@@ -18,6 +18,7 @@ import { loadParticles } from './utils';
 import { unloadParticles } from './utils/particles';
 import ParticlesOptions from './particlesOptions';
 import { PAINT_MODE, PARTICLES_MODE, NORMAL_MODE } from './shared/constants';
+import PaintOptions from './paintOptions';
 
 class ToolbarOptions extends React.Component {
   constructor(props) {
@@ -155,6 +156,7 @@ class ToolbarOptions extends React.Component {
           </div>
         ) : null}
         { selectedType === PARTICLES_MODE ? <ParticlesOptions /> : null }
+        { selectedType === PAINT_MODE ? <PaintOptions /> : null }
         <Dialog
           hidden={!showModal}
           onDismiss={this.closeModal}
