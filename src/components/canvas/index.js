@@ -9,6 +9,8 @@ import {
 } from 'office-ui-fabric-react';
 import { generateImage } from '../../utils';
 import './index.scss';
+import { PAINT_MODE } from '../../shared/constants';
+import PaintCanvas from '../paint-canvas';
 
 class Canvas extends Component {
   constructor(props) {
@@ -23,14 +25,24 @@ class Canvas extends Component {
   };
 
   render() {
-    const { canvasBg, showModal, closeModal } = this.props;
+    const {
+      canvasBg, showModal, closeModal, canvasMode,
+    } = this.props;
+    const props = {
+      brushCol: '#000',
+      className: 'react-paint',
+      height: '100%',
+      width: '100%',
+    };
     return (
       <div id="particles-js" style={{ backgroundColor: canvasBg }}>
-        <canvas
-          ref={this.canvasRef}
-          className="particles-js-canvas-el"
-          style={{ height: '100%', width: '100%' }}
-        />
+        { canvasMode === PAINT_MODE ? <PaintCanvas {...props} /> : (
+          <canvas
+            ref={this.canvasRef}
+            className="particles-js-canvas-el"
+            style={{ height: '100%', width: '100%' }}
+          />
+        )}
         <Dialog
           hidden={!showModal}
           onDismiss={closeModal}
