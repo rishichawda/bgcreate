@@ -34,13 +34,15 @@ class Canvas extends Component {
       height: '100%',
       width: '100%',
     };
-    return canvasMode === PAINT_MODE ? <PaintCanvas {...props} /> : (
+    return (
       <div id="particles-js" style={{ backgroundColor: canvasBg }}>
-        <canvas
-          ref={this.canvasRef}
-          className="particles-js-canvas-el"
-          style={{ height: '100%', width: '100%' }}
-        />
+        { canvasMode === PAINT_MODE ? <PaintCanvas {...props} /> : (
+          <canvas
+            ref={this.canvasRef}
+            className="particles-js-canvas-el"
+            style={{ height: '100%', width: '100%' }}
+          />
+        )}
         <Dialog
           hidden={!showModal}
           onDismiss={closeModal}

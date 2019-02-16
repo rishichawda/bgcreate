@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 export default class PaintCanvas extends Component {
   static propTypes = {
-    className: PropTypes.string,
     style: PropTypes.oneOfType([PropTypes.object]),
     height: PropTypes.string,
     width: PropTypes.string,
@@ -13,7 +12,6 @@ export default class PaintCanvas extends Component {
   };
 
   static defaultProps = {
-    className: 'react-paint',
     style: {},
     height: '100%',
     width: '100%',
@@ -90,28 +88,24 @@ export default class PaintCanvas extends Component {
       height,
       onDraw,
       style,
-      className,
     } = this.props;
 
     return (
-      <div className={className} id="particles-js">
-        <canvas
+      <canvas
           // eslint-disable-next-line no-return-assign
-          ref={c => (this.canvas = c)}
-          className={`${className}__canvas`}
-          onClick={onDraw}
-          height={height}
-          width={width}
-          style={style}
-          onMouseDown={this.mouseDown}
-          onTouchStart={this.mouseDown}
-          onMouseUp={this.mouseUp}
-          onTouchEnd={this.mouseUp}
-          onMouseLeave={this.mouseUp}
-          onMouseMove={this.mouseMove}
-          onTouchMove={this.mouseMove}
-        />
-      </div>
+        ref={c => (this.canvas = c)}
+        onClick={onDraw}
+        height={height}
+        width={width}
+        style={style}
+        onMouseDown={this.mouseDown}
+        onTouchStart={this.mouseDown}
+        onMouseUp={this.mouseUp}
+        onTouchEnd={this.mouseUp}
+        onMouseLeave={this.mouseUp}
+        onMouseMove={this.mouseMove}
+        onTouchMove={this.mouseMove}
+      />
     );
   }
 }

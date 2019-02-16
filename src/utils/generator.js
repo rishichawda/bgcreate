@@ -1,4 +1,4 @@
-import { PARTICLES_MODE } from '../shared/constants';
+import { PARTICLES_MODE, PAINT_MODE } from '../shared/constants';
 
 const generateDownloadLink = (image) => {
   const a = document.createElement('a');
@@ -37,7 +37,8 @@ export default (canvasBg, mode) => {
   finalimage.height = height;
   finalimageCanvascontext.fillStyle = canvasBg;
   finalimageCanvascontext.fillRect(0, 0, width, height);
-  if (mode === PARTICLES_MODE) {
+  console.log(mode);
+  if (mode === PARTICLES_MODE || mode === PAINT_MODE) {
     finalimageCanvascontext.drawImage(canvas, 0, 0);
   }
   generateDownloadLink(finalimage);

@@ -2,7 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
-import { CommandBarButton, Dialog, DialogType, DialogFooter, PrimaryButton, DefaultButton } from 'office-ui-fabric-react';
+import {
+  CommandBarButton, Dialog, DialogType, DialogFooter, PrimaryButton, DefaultButton,
+} from 'office-ui-fabric-react';
 import ToolbarOptions from './toolbarOptions';
 import { resetCanvasState } from './actions';
 
