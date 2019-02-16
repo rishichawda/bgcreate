@@ -158,3 +158,21 @@ div[data-toolbar-item=bg-color-display] {
         width: 100%;
     }
 }
+
+.new-file-modal .new-file-modal-footer > div {
+    display: flex;
+    span {
+        @media only screen and (max-width: 560px) {
+            margin-bottom: 5px;
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+    @media only screen and (max-width: 560px) {
+        flex-direction: column;
+        align-items: center;
+    }
+}

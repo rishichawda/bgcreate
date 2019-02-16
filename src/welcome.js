@@ -1,4 +1,3 @@
-// @codepen
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'office-ui-fabric-react/lib/Modal';
