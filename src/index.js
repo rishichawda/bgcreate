@@ -5,6 +5,7 @@ import Toolbar from './toolbar';
 import store from './store';
 // eslint-disable-next-line import/extensions
 import Canvas from './components/canvas/index.js';
+import Welcome from './welcome';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,14 @@ class App extends React.Component {
     this.state = {
       toolbar: false,
       modal: false,
+      welcomemodal: false,
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      welcomemodal: true,
+    });
   }
 
     openToolbar = () => {
@@ -33,6 +41,12 @@ class App extends React.Component {
       });
     };
 
+    closeWelcomeModal = () => {
+      this.setState({
+        welcomemodal: false,
+      });
+    }
+
     closeToolbar = () => {
       this.setState({
         toolbar: false,
@@ -40,10 +54,11 @@ class App extends React.Component {
     };
 
     render() {
-      const { toolbar, modal } = this.state;
+      const { toolbar, modal, welcomemodal } = this.state;
       return (
         <Provider store={store}>
           <div>
+            <Welcome showModal={welcomemodal} closeModal={this.closeWelcomeModal} />
             <MenuBar showModal={this.openModal} showToolbar={this.openToolbar} />
             <Toolbar showPanel={toolbar} closePanel={this.closeToolbar} />
             <Canvas showModal={modal} closeModal={this.closeModal} />

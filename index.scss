@@ -4,7 +4,7 @@ body {
     overflow: hidden;
 }
 
-.about-section {
+.about-section, .welcome-section {
     width: 80vw;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -22,6 +22,34 @@ body {
         flex: 1;
         justify-content: space-around;
         width: 100%;
+    }
+}
+
+.welcome-section {
+    animation: anim 0.4s linear;
+    @keyframes anim {
+        0% {
+            opacity: 0 !important;
+            -webkit-transform: scale(0.1);
+            -moz-transform: scale(0.1);
+            -ms-transform: scale(0.1);
+            transform: scale(0.1);
+        }
+
+        70% {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        100% {
+            opacity: 1 !important;
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
     }
 }
 
