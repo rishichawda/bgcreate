@@ -1,5 +1,5 @@
 import { isHexFormat, hexToRgb } from '../utils';
-import { BG_UPDATE, MODE_UPDATE } from '../shared/actionTypes';
+import { BG_UPDATE, MODE_UPDATE, BRUSH_COLOR } from '../shared/actionTypes';
 import { unloadParticles } from '../utils/particles';
 import { PARTICLES_MODE, NORMAL_MODE } from '../shared/constants';
 
@@ -34,3 +34,8 @@ export const updateBackground = color => (dispatch) => {
 export const switchMode = mode => (dispatch) => {
   dispatch(updateMode(mode));
 };
+
+export const updateBrushCol = payload => ({
+  type: BRUSH_COLOR,
+  payload,
+});
