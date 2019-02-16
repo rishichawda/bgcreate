@@ -8,7 +8,7 @@ import {
   updateParticlesShape, updateParticlesDensity, toggleOpacityAnimation,
 } from './utils/particles';
 import ColorPicker from './colorPicker';
-import { updateBrushCol } from './actions';
+import { updateBrushCol, updateLineWidth } from './actions';
 
 class PaintOptions extends Component {
   constructor(props) {
@@ -57,8 +57,15 @@ class PaintOptions extends Component {
     updatePencilColor(color);
   }
 
+  updatePencilWidth = (e) => {
+    const { updatePencilWidth } = this.props;
+    updatePencilWidth(Number(e.target.value));
+    return e.target.value;
+  }
+
   render() {
     const { collapse } = this.state;
+    const { pencilWidth } = this.props;
     const paintConfigProps = {
       'data-toolbar-option': 'paint-config',
       iconProps: { iconName: collapse ? 'ChevronDown' : 'ChevronUp' },
@@ -72,11 +79,19 @@ class PaintOptions extends Component {
           <div className={`${AnimationClassNames.scaleUpIn100} paint-config-collapse`}>
             <h4>Select pencil styles: </h4>
             <SpinButton
-              value={1}
+              ariaLabel="Pencil size selector"
+              value={pencilWidth}
               label="Pencil size:"
               min={0}
               max={100}
               step={1.0}
+              onBlur={this.updatePencilWidth}
+              onDecrement={(value) => {
+                this.updatePencilWidth({ target: { value: Number(value) - 1 } });
+              }}
+              onIncrement={(value) => {
+                this.updatePencilWidth({ target: { value: Number(value) + 1 } });
+              }}
               incrementButtonAriaLabel="Increase value by 1"
               decrementButtonAriaLabel="Decrease value by 1"
             />
@@ -98,6 +113,11 @@ class PaintOptions extends Component {
 
 const mapDispatch = dispatch => ({
   updatePencilColor: bindActionCreators(updateBrushCol, dispatch),
+  updatePencilWidth: bindActionCreators(updateLineWidth, dispatch),
 });
 
-export default connect(null, mapDispatch)(PaintOptions);
+const mapState = ({ paint: { lineWidth } }) => ({
+  pencilWidth: lineWidth,
+});
+
+export default connect(mapState, mapDispatch)(PaintOptions);
