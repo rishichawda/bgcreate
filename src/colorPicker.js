@@ -8,7 +8,7 @@ class BackgroundColorPicker extends React.Component {
     super(props);
 
     this.state = {
-      color: '#ffffff',
+      color: props.color || '#ffffff',
     };
 
     this.updateColor = this.updateColor.bind(this);
@@ -39,10 +39,12 @@ BackgroundColorPicker.propTypes = {
   children: PropTypes.node.isRequired,
   onUpdate: PropTypes.func.isRequired,
   className: PropTypes.string,
+  color: PropTypes.string,
 };
 
 BackgroundColorPicker.defaultProps = {
   className: '',
+  color: null,
 };
 
 export default BackgroundColorPicker;
