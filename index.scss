@@ -5,7 +5,6 @@ body {
 }
 
 .about-section {
-    height: 80vh;
     width: 80vw;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -17,6 +16,13 @@ body {
     -webkit-box-align: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
+
+    .about-modal-footer {
+        display: flex;
+        flex: 1;
+        justify-content: space-around;
+        width: 100%;
+    }
 }
 
 .about-header {
