@@ -7,7 +7,9 @@ Current version is deployed [here](https://bgcreate.netlify.com/). :rocket:
 
 ### Demo :
 
-![demo](https://github.com/rishichawda/bgcreate/blob/master/examples/demo.gif)
+<p align="center">
+  <img src="https://github.com/rishichawda/bgcreate/blob/master/examples/demo.gif" alt="demo">
+</p>
 
 **Sample image :**
 
