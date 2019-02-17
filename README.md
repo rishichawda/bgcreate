@@ -1,18 +1,21 @@
 # bgcreate
-Create background images with particles or paint tool and download them to your local device.
+:art: Create background images with particles or paint tool and download them to your local device. :computer: :iphone: :sparkles: 
 
-**NOTE** : The application is currently being ported to react for design changes, updates and various improvements. Also, it is an old, *somewhat incomplete*, project being revisited so there may not be consistent updates.
+**NOTE** : It is an old, *somewhat incomplete*, project being revisited *( recently ported to react for design changes, updates and various improvements )* so there may not be consistent updates.
 
-Current version is deployed [here](https://bgcreate.netlify.com/).
+Current version is deployed [here](https://bgcreate.netlify.com/). :rocket:
 
-Incase you still want to checkout the old application *( not advisable )*, you can visit [here](https://rishichawda.github.io/bgcreate/).
+### Demo :
 
-*Sample Image 1* :
+![demo](https://github.com/rishichawda/bgcreate/blob/master/examples/demo.gif)
 
-![Sample Image](https://github.com/rishichawda/bgcreate/blob/master/examples/bgGeneratorImage-3.jpg)
+**Sample image :**
 
-### Planned updates : 
+![sample-image](https://github.com/rishichawda/bgcreate/blob/master/examples/bgGeneratorImage-3.jpg)
 
-* Paint tool ( For desktop and mobile devices ).
-* More control over file properties such as *name*, *size*, etc.
-* A few bugs to fix later.
+#### Planned updates : 
+
+* ~~Paint tool ( For desktop and mobile devices )~~ - Added in v1.1 :white_check_mark: _( **Note**: More features and customisation options will be added to the paint tool in future )_. :nail_care:
+* Design presets / effects. :rainbow:
+* More control over file properties such as *name*, *size*, etc. :memo:
+* A few bugs to fix later. :beetle::bug:
