@@ -26,7 +26,11 @@ class Canvas extends Component {
 
   render() {
     const {
-      canvasBg, showModal, closeModal, canvasMode, paintConfig,
+      canvasBg,
+      showModal,
+      closeModal,
+      canvasMode,
+      paintConfig,
     } = this.props;
     const props = {
       brushCol: paintConfig.brushCol,
@@ -36,7 +40,9 @@ class Canvas extends Component {
     };
     return (
       <div id="particles-js" style={{ backgroundColor: canvasBg }}>
-        { canvasMode === PAINT_MODE ? <PaintCanvas {...props} /> : (
+        {canvasMode === PAINT_MODE ? (
+          <PaintCanvas {...props} />
+        ) : (
           <canvas
             ref={this.canvasRef}
             className="particles-js-canvas-el"

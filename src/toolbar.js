@@ -4,7 +4,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
 import {
-  CommandBarButton, Dialog, DialogType, DialogFooter, PrimaryButton, DefaultButton,
+  CommandBarButton,
+  Dialog,
+  DialogType,
+  DialogFooter,
+  PrimaryButton,
+  DefaultButton,
 } from 'office-ui-fabric-react';
 import ToolbarOptions from './toolbarOptions';
 import { resetCanvasState } from './actions';
@@ -21,19 +26,19 @@ class Toolbar extends React.Component {
     this.setState({
       hideDialog: true,
     });
-  }
+  };
 
   resetCanvas = () => {
     const { resetCanvas } = this.props;
     resetCanvas();
     this.closeDialog();
-  }
+  };
 
   showDialog = () => {
     this.setState({
       hideDialog: false,
     });
-  }
+  };
 
   render() {
     const { showPanel, closePanel } = this.props;
@@ -61,7 +66,8 @@ class Toolbar extends React.Component {
           dialogContentProps={{
             type: DialogType.normal,
             title: 'Are you sure?',
-            subText: 'All the current changes will be lost. Do you want to continue?',
+            subText:
+              'All the current changes will be lost. Do you want to continue?',
           }}
           modalProps={{
             titleAriaId: 'reset-canvas-title',
@@ -71,7 +77,10 @@ class Toolbar extends React.Component {
           }}
         >
           <DialogFooter>
-            <PrimaryButton onClick={this.resetCanvas} text="Yes, reset canvas." />
+            <PrimaryButton
+              onClick={this.resetCanvas}
+              text="Yes, reset canvas."
+            />
             <DefaultButton onClick={this.closeDialog} text="Cancel." />
           </DialogFooter>
         </Dialog>

@@ -16,12 +16,18 @@ const Welcome = ({ showModal, closeModal }) => (
     >
       <div className="about-header">
         <span id="titleId">Hello, there!</span>
-        <Icon iconName="Cancel" className="close-modal-icon" onClick={closeModal} />
+        <Icon
+          iconName="Cancel"
+          className="close-modal-icon"
+          onClick={closeModal}
+        />
       </div>
       <div id="subtitleId" className="modal-body">
         <h3>Welcome to BgCreate v1.1!</h3>
         <p>
-          {'As you will notice, the app has a minimal design so that most of the part is clean and focused on the content. Here is a small walkthrough of the app to get you started : '}
+          {
+            'As you will notice, the app has a minimal design so that most of the part is clean and focused on the content. Here is a small walkthrough of the app to get you started : '
+          }
         </p>
         <p>
           {'To open the toolbar with all the options, click on the '}
@@ -31,17 +37,25 @@ const Welcome = ({ showModal, closeModal }) => (
           {'.'}
         </p>
         <p>
-          {'You can play around with the tools and available options on the toolbar and can download your currents edits with the help of the '}
+          {
+            'You can play around with the tools and available options on the toolbar and can download your currents edits with the help of the '
+          }
           <strong>Download</strong>
           {' button on the menu bar on top.'}
         </p>
         <p>
-          {'That\'s all you need to know for now! Rest of it pretty easy, I can assure you!'}
+          {
+            "That's all you need to know for now! Rest of it pretty easy, I can assure you!"
+          }
         </p>
         <p>
           {'You can also star the '}
-          <Link href="https://github.com/rishichawda/bgcreate">github repository</Link>
-          {' later to show your support if you liked this app! And stay tuned - a lot of great updates are on the way!'}
+          <Link href="https://github.com/rishichawda/bgcreate">
+            github repository
+          </Link>
+          {
+            ' later to show your support if you liked this app! And stay tuned - a lot of great updates are on the way!'
+          }
         </p>
       </div>
     </Modal>

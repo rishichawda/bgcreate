@@ -1,6 +1,9 @@
 import { isHexFormat, hexToRgb } from '../utils';
 import {
-  BG_UPDATE, MODE_UPDATE, BRUSH_COLOR, LINE_WIDTH,
+  BG_UPDATE,
+  MODE_UPDATE,
+  BRUSH_COLOR,
+  LINE_WIDTH,
 } from '../shared/actionTypes';
 import { unloadParticles } from '../utils/particles';
 import { PARTICLES_MODE, NORMAL_MODE } from '../shared/constants';

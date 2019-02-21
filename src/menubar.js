@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import {
-  Dialog, DialogFooter, PrimaryButton, DefaultButton, DialogType,
+  Dialog,
+  DialogFooter,
+  PrimaryButton,
+  DefaultButton,
+  DialogType,
 } from 'office-ui-fabric-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -31,7 +35,7 @@ class MenuBar extends Component {
     }
     this.closeDialog();
     generateNewCanvas();
-  }
+  };
 
   // Data for CommandBar
   getItems = () => {
@@ -96,7 +100,7 @@ class MenuBar extends Component {
       });
     }
     return options;
-  }
+  };
 
   getOverlflowItems = () => [
     {
@@ -132,20 +136,20 @@ class MenuBar extends Component {
     this.setState({
       hideDialog: true,
     });
-  }
+  };
 
   showDialog = () => {
     this.setState({
       hideDialog: false,
     });
-  }
+  };
 
   toggleParticlesMovement = () => {
     this.setState((prevState) => {
       toggleParticlesMovement(prevState.particlesPaused);
       return { particlesPaused: !prevState.particlesPaused };
     });
-  }
+  };
 
   render() {
     const { showModal, hideDialog } = this.state;
@@ -164,7 +168,8 @@ class MenuBar extends Component {
           dialogContentProps={{
             type: DialogType.normal,
             title: 'Are you sure?',
-            subText: 'Do you want to save current changes before creating a new image?',
+            subText:
+              'Do you want to save current changes before creating a new image?',
           }}
           modalProps={{
             titleAriaId: 'myLabelId',
@@ -174,10 +179,19 @@ class MenuBar extends Component {
           }}
           isBlocking
         >
-          {null /** You can also include null values as the result of conditionals */}
+          {
+            null /** You can also include null values as the result of conditionals */
+          }
           <DialogFooter className="new-file-modal-footer">
-            <PrimaryButton onClick={this.createWithSave} text="Yes, save and create new." />
-            <PrimaryButton onClick={this.createWithoutSave} style={{ backgroundColor: '#f06060' }} text="Continue without saving." />
+            <PrimaryButton
+              onClick={this.createWithSave}
+              text="Yes, save and create new."
+            />
+            <PrimaryButton
+              onClick={this.createWithoutSave}
+              style={{ backgroundColor: '#f06060' }}
+              text="Continue without saving."
+            />
             <DefaultButton onClick={this.closeDialog} text="Cancel" />
           </DialogFooter>
         </Dialog>
@@ -191,7 +205,6 @@ const mapProps = ({ bgColor, mode }) => ({
   canvasMode: mode,
 });
 
-
 const mapDispatch = dispatch => ({
   generateNewCanvas: bindActionCreators(resetCanvasState, dispatch),
 });
@@ -204,4 +217,7 @@ MenuBar.propTypes = {
   generateNewCanvas: PropTypes.func.isRequired,
 };
 
-export default connect(mapProps, mapDispatch)(MenuBar);
+export default connect(
+  mapProps,
+  mapDispatch,
+)(MenuBar);

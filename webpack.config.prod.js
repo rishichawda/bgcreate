@@ -6,9 +6,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: [
-    './index.js',
-  ],
+  entry: ['./index.js'],
   context: __dirname,
   devtool: 'source-map',
   output: {
@@ -18,9 +16,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.scss', '.js'],
-    modules: [
-      'node_modules',
-    ],
+    modules: ['node_modules'],
   },
   module: {
     rules: [
@@ -30,13 +26,10 @@ module.exports = {
         use: {
           loader: 'babel-loader?cacheDirectory=true',
         },
-      }, {
+      },
+      {
         test: /\.(scss|css)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },

@@ -54,14 +54,14 @@ class ToolbarOptions extends React.Component {
       showModal: false,
       selectedType: setType === null ? prevState.selectedType : setType,
     }));
-  }
+  };
 
   switchToPaint = () => {
     const { switchEditMode, resetCanvas } = this.props;
     this.closeModal(null, PAINT_MODE);
     resetCanvas();
     switchEditMode(PAINT_MODE);
-  }
+  };
 
   updateCanvasBackground = (color) => {
     const { updateCanvasBackground } = this.props;
@@ -98,7 +98,7 @@ class ToolbarOptions extends React.Component {
       default:
         break;
     }
-  }
+  };
 
   render() {
     const {
@@ -133,7 +133,9 @@ class ToolbarOptions extends React.Component {
         ) : null}
         <CommandBarButton {...collapseTwoProps} />
         {!collapseTwo ? (
-          <div className={`collapseTwoContent ${AnimationClassNames.scaleUpIn100}`}>
+          <div
+            className={`collapseTwoContent ${AnimationClassNames.scaleUpIn100}`}
+          >
             <Dropdown
               placeholder="Select an option"
               label="Choose a canvas type :"
@@ -141,22 +143,30 @@ class ToolbarOptions extends React.Component {
               ariaLabel="Effects dropdown"
               options={[
                 { key: NORMAL_MODE, text: 'None', title: 'No effect' },
-                { key: 'divider_0', text: '-', itemType: DropdownMenuItemType.Divider },
+                {
+                  key: 'divider_0',
+                  text: '-',
+                  itemType: DropdownMenuItemType.Divider,
+                },
                 { key: PARTICLES_MODE, text: PARTICLES_MODE },
-                { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
+                {
+                  key: 'divider_1',
+                  text: '-',
+                  itemType: DropdownMenuItemType.Divider,
+                },
                 { key: PAINT_MODE, text: PAINT_MODE },
               ]}
               selectedKey={selectedType}
               onChange={this.updateCanvasType}
             />
             <p>
-              You can currently choose between particles
-              effect and a paint tool / canvas where you can draw using mouse.
+              You can currently choose between particles effect and a paint tool
+              / canvas where you can draw using mouse.
             </p>
           </div>
         ) : null}
-        { selectedType === PARTICLES_MODE ? <ParticlesOptions /> : null }
-        { selectedType === PAINT_MODE ? <PaintOptions /> : null }
+        {selectedType === PARTICLES_MODE ? <ParticlesOptions /> : null}
+        {selectedType === PAINT_MODE ? <PaintOptions /> : null}
         <Dialog
           hidden={!showModal}
           onDismiss={this.closeModal}
