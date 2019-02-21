@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import {
-  CommandBarButton, AnimationClassNames, Dropdown, Slider, DefaultButton, Checkbox,
+  CommandBarButton,
+  AnimationClassNames,
+  Dropdown,
+  Slider,
+  DefaultButton,
+  Checkbox,
 } from 'office-ui-fabric-react';
 import {
-  updateParticlesShape, updateParticlesDensity, updateParticlesColor, toggleOpacityAnimation,
+  updateParticlesShape,
+  updateParticlesDensity,
+  updateParticlesColor,
+  toggleOpacityAnimation,
 } from './utils/particles';
 import ColorPicker from './colorPicker';
 
@@ -18,13 +26,13 @@ class ParticlesOptions extends Component {
 
   changeDensity = (value) => {
     updateParticlesDensity(value);
-  }
+  };
 
   toggleCollapse = () => {
     this.setState(prevState => ({
       collapse: !prevState.collapse,
     }));
-  }
+  };
 
   onChangeTypes = (_, options) => {
     let { selected } = this.state;
@@ -43,16 +51,16 @@ class ParticlesOptions extends Component {
       });
       updateParticlesShape(selected);
     }
-  }
+  };
 
   toggleOpacity = (_, value) => {
     toggleOpacityAnimation(value);
-  }
+  };
 
   updateParticlesColor = (color) => {
     const { selected } = this.state;
     updateParticlesColor(color, selected);
-  }
+  };
 
   render() {
     const { collapse, selected } = this.state;
@@ -66,7 +74,11 @@ class ParticlesOptions extends Component {
       <div>
         <CommandBarButton {...particlesConfigProps} />
         {!collapse ? (
-          <div className={`${AnimationClassNames.scaleUpIn100} particles-config-collapse`}>
+          <div
+            className={`${
+              AnimationClassNames.scaleUpIn100
+            } particles-config-collapse`}
+          >
             <Dropdown
               placeholder="Select particle types"
               label="Particle types :"
@@ -101,7 +113,10 @@ class ParticlesOptions extends Component {
             <p>Change the density of particles on the canvas.</p>
             <hr />
             <p style={{ marginBottom: 0 }}>Select particle color :</p>
-            <ColorPicker className="particles-color-picker" onUpdate={this.updateParticlesColor}>
+            <ColorPicker
+              className="particles-color-picker"
+              onUpdate={this.updateParticlesColor}
+            >
               <DefaultButton
                 data-automation-id="particles-color"
                 text="Apply"
@@ -109,7 +124,10 @@ class ParticlesOptions extends Component {
               />
             </ColorPicker>
             <hr />
-            <Checkbox label="Animate particle opacity" onChange={this.toggleOpacity} />
+            <Checkbox
+              label="Animate particle opacity"
+              onChange={this.toggleOpacity}
+            />
           </div>
         ) : null}
       </div>

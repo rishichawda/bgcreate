@@ -23,49 +23,52 @@ class App extends React.Component {
     });
   }
 
-    openToolbar = () => {
-      this.setState({
-        toolbar: true,
-      });
-    };
+  openToolbar = () => {
+    this.setState({
+      toolbar: true,
+    });
+  };
 
-    closeModal = () => {
-      this.setState({
-        modal: false,
-      });
-    };
+  closeModal = () => {
+    this.setState({
+      modal: false,
+    });
+  };
 
-    openModal = () => {
-      this.setState({
-        modal: true,
-      });
-    };
+  openModal = () => {
+    this.setState({
+      modal: true,
+    });
+  };
 
-    closeWelcomeModal = () => {
-      this.setState({
-        welcomemodal: false,
-      });
-    }
+  closeWelcomeModal = () => {
+    this.setState({
+      welcomemodal: false,
+    });
+  };
 
-    closeToolbar = () => {
-      this.setState({
-        toolbar: false,
-      });
-    };
+  closeToolbar = () => {
+    this.setState({
+      toolbar: false,
+    });
+  };
 
-    render() {
-      const { toolbar, modal, welcomemodal } = this.state;
-      return (
-        <Provider store={store}>
-          <div>
-            <Welcome showModal={welcomemodal} closeModal={this.closeWelcomeModal} />
-            <MenuBar showModal={this.openModal} showToolbar={this.openToolbar} />
-            <Toolbar showPanel={toolbar} closePanel={this.closeToolbar} />
-            <Canvas showModal={modal} closeModal={this.closeModal} />
-          </div>
-        </Provider>
-      );
-    }
+  render() {
+    const { toolbar, modal, welcomemodal } = this.state;
+    return (
+      <Provider store={store}>
+        <div>
+          <Welcome
+            showModal={welcomemodal}
+            closeModal={this.closeWelcomeModal}
+          />
+          <MenuBar showModal={this.openModal} showToolbar={this.openToolbar} />
+          <Toolbar showPanel={toolbar} closePanel={this.closeToolbar} />
+          <Canvas showModal={modal} closeModal={this.closeModal} />
+        </div>
+      </Provider>
+    );
+  }
 }
 
 export default App;

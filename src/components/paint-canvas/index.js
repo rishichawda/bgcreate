@@ -30,8 +30,12 @@ export default class PaintCanvas extends Component {
   componentDidMount() {
     const { brushCol, lineWidth } = this.props;
     const context = this.canvas.getContext('2d');
-    context.canvas.width = document.getElementById('particles-js').getBoundingClientRect().width;
-    context.canvas.height = document.getElementById('particles-js').getBoundingClientRect().width;
+    context.canvas.width = document
+      .getElementById('particles-js')
+      .getBoundingClientRect().width;
+    context.canvas.height = document
+      .getElementById('particles-js')
+      .getBoundingClientRect().width;
     context.lineWidth = lineWidth;
     context.strokeStyle = brushCol;
     context.lineJoin = 'round';
@@ -42,10 +46,7 @@ export default class PaintCanvas extends Component {
   componentWillUpdate(nextProps) {
     const { brushCol, lineWidth } = this.props;
     const context = this.canvas.getContext('2d');
-    if (
-      brushCol !== nextProps.brushCol
-      || lineWidth !== nextProps.lineWidth
-    ) {
+    if (brushCol !== nextProps.brushCol || lineWidth !== nextProps.lineWidth) {
       context.lineWidth = nextProps.lineWidth;
       context.strokeStyle = nextProps.brushCol;
     }
@@ -60,7 +61,7 @@ export default class PaintCanvas extends Component {
       (e.pageX || (e.touches && e.touches[0].pageX)) - this.bb.left,
       (e.pageY || (e.touches && e.touches[0].pageY)) - this.bb.top,
     );
-  }
+  };
 
   mouseUp = () => {
     this.setState({ mouseDown: false });
@@ -79,25 +80,22 @@ export default class PaintCanvas extends Component {
         && (e.pageY || (e.touches && e.touches[0].pageY)) < this.bb.height
       ) {
         context.lineTo(
-          ((e.pageX || (e.touches && e.touches[0].pageX)) - this.bb.left),
-          ((e.pageY || (e.touches && e.touches[0].pageY)) - this.bb.top),
+          (e.pageX || (e.touches && e.touches[0].pageX)) - this.bb.left,
+          (e.pageY || (e.touches && e.touches[0].pageY)) - this.bb.top,
         );
         context.stroke();
       }
     }
-  }
+  };
 
   render() {
     const {
-      width,
-      height,
-      onDraw,
-      style,
+      width, height, onDraw, style,
     } = this.props;
 
     return (
       <canvas
-          // eslint-disable-next-line no-return-assign
+        // eslint-disable-next-line no-return-assign
         ref={c => (this.canvas = c)}
         onClick={onDraw}
         height={height}

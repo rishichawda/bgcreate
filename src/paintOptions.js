@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  CommandBarButton, AnimationClassNames, DefaultButton, SpinButton,
+  CommandBarButton,
+  AnimationClassNames,
+  DefaultButton,
+  SpinButton,
 } from 'office-ui-fabric-react';
 import { bindActionCreators } from 'redux';
 import {
-  updateParticlesShape, updateParticlesDensity, toggleOpacityAnimation,
+  updateParticlesShape,
+  updateParticlesDensity,
+  toggleOpacityAnimation,
 } from './utils/particles';
 import ColorPicker from './colorPicker';
 import { updateBrushCol, updateLineWidth } from './actions';
@@ -21,13 +26,13 @@ class PaintOptions extends Component {
 
   changeDensity = (value) => {
     updateParticlesDensity(value);
-  }
+  };
 
   toggleCollapse = () => {
     this.setState(prevState => ({
       collapse: !prevState.collapse,
     }));
-  }
+  };
 
   onChangeTypes = (_, options) => {
     let { selected } = this.state;
@@ -46,22 +51,22 @@ class PaintOptions extends Component {
       });
       updateParticlesShape(selected);
     }
-  }
+  };
 
   toggleOpacity = (_, value) => {
     toggleOpacityAnimation(value);
-  }
+  };
 
   updatePencilColor = (color) => {
     const { updatePencilColor } = this.props;
     updatePencilColor(color);
-  }
+  };
 
   updatePencilWidth = (e) => {
     const { updatePencilWidth } = this.props;
     updatePencilWidth(Number(e.target.value));
     return e.target.value;
-  }
+  };
 
   render() {
     const { collapse } = this.state;
@@ -76,7 +81,11 @@ class PaintOptions extends Component {
       <div>
         <CommandBarButton {...paintConfigProps} />
         {!collapse ? (
-          <div className={`${AnimationClassNames.scaleUpIn100} paint-config-collapse`}>
+          <div
+            className={`${
+              AnimationClassNames.scaleUpIn100
+            } paint-config-collapse`}
+          >
             <h4>Select pencil styles: </h4>
             <SpinButton
               ariaLabel="Pencil size selector"
@@ -87,16 +96,24 @@ class PaintOptions extends Component {
               step={1.0}
               onBlur={this.updatePencilWidth}
               onDecrement={(value) => {
-                this.updatePencilWidth({ target: { value: Number(value) - 1 } });
+                this.updatePencilWidth({
+                  target: { value: Number(value) - 1 },
+                });
               }}
               onIncrement={(value) => {
-                this.updatePencilWidth({ target: { value: Number(value) + 1 } });
+                this.updatePencilWidth({
+                  target: { value: Number(value) + 1 },
+                });
               }}
               incrementButtonAriaLabel="Increase value by 1"
               decrementButtonAriaLabel="Decrease value by 1"
             />
             <p style={{ marginBottom: 0 }}>Select pencil color :</p>
-            <ColorPicker color={pencilColor} className="particles-color-picker" onUpdate={this.updatePencilColor}>
+            <ColorPicker
+              color={pencilColor}
+              className="particles-color-picker"
+              onUpdate={this.updatePencilColor}
+            >
               <DefaultButton
                 data-automation-id="particles-color"
                 text="Apply"
@@ -121,4 +138,7 @@ const mapState = ({ paint: { lineWidth, brushCol } }) => ({
   pencilColor: brushCol,
 });
 
-export default connect(mapState, mapDispatch)(PaintOptions);
+export default connect(
+  mapState,
+  mapDispatch,
+)(PaintOptions);
